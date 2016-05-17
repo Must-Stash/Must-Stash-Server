@@ -4,6 +4,8 @@ const express =  require('express');
 const router = express.Router();
 const url = require('url');
 
+const Query = require('../models/Query');
+
 router.route('/')
   .post((req, res, next) => {
     let  data = req.body.data;
