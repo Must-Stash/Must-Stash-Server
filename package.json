@@ -1,0 +1,28 @@
+{
+  "name": "Must-Stash-Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Must-Stash/Must-Stash-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Must-Stash/Must-Stash-Server/issues"
+  },
+  "homepage": "https://github.com/Must-Stash/Must-Stash-Server#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
+  }
+}
