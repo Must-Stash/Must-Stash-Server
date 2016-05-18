@@ -10,31 +10,22 @@ const Activity = require('../models/Activity');
 router.post('/queries', (req, res, next) => {
   let data = req.body.data;
 
-  let queries = data.filter((dataItem) => {
-    return dataItem.interaction === 'query';
-  });
+  let queries = [];
+  let activities = [];
 
-  Query.insertMany(queries)
-  .then((queries) => {
+  for(let i = 0; i < data.length; i++) {
+    if(data[i].interaction === 'query') {
+      queries.push(data[i]);
+    } else if(data[i].interaction === 'activity') {
+      activities.push(data[i]);
+    }
+  }
 
-    let activities = data.filter((dataItem) => {
-      return dataItem.interaction === 'activity';
-    });
+  Query.insertMany(queries);
 
-    Activity.insertMany(activities)
-    .then((activities) => {
-      res.json({success: true});
-    })
-    .catch((err) => {
-     res.json({success: false});
-    });
+  Activity.insertMany(activities);
 
-  })
-  .catch((err) => {
-   res.json({success: false});
-  });
-
-
+  res.json({success: true});
 });
 
 // router.post('/activities', (req, res, next) => {
