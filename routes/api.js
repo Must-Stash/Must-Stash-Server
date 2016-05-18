@@ -21,26 +21,21 @@ router.post('/queries', (req, res, next) => {
     }
   }
 
-  Query.insertMany(queries);
+  Query.insertMany(queries)
+  .then((queries) => {
+    Activity.insertMany(activities)
+    .then((activities) => {
+      res.json({success: true});
+    })
+    .catch((err) => {
+      res.json({success: false})
+    });
+  })
+  .catch((err) => {
+    res.json({success: false})
+  });
 
-  Activity.insertMany(activities);
-
-  res.json({success: true});
 });
-
-// router.post('/activities', (req, res, next) => {
-//   let activies = req.body.activities;
-
-//   Activity.insertMany(data)
-//   .then((activities) => {
-//     console.log(activities);
-//   })
-//   .catch((err) => {
-//    console.log(err);
-//   });
-
-//   res.json({success: true});
-// });
 
 router.get('/search', (req, res, next) => {
   let query_string = url.parse(req.url, true).query;
