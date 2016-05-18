@@ -16,4 +16,8 @@ router.route('/')
     res.json({success: query_string.q});
   });
 
+router.post('/history', (req, res, next) => {
+  res.json({success: true});
+});
+
 module.exports = router;
