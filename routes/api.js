@@ -5,57 +5,51 @@ const router = express.Router();
 const url = require('url');
 
 const Query = require('../models/Query');
+const Activity = require('../models/Activity');
 
-//interaction
 router.post('/queries', (req, res, next) => {
-  let  data = req.body.data;
+  let data = req.body.data;
 
-  let queries = data.filter((request) => {
-    return request.interaction === 'query';
-  }).map((query) => {
-    return {
-      query: query.url,
-      timestamp: query.timestamp,
-      tabId: query.tabId,
-      urls: []
-    };
+  let queries = data.filter((dataItem) => {
+    return dataItem.interaction === 'query';
   });
 
-  // console.log(queries);
-  let activities = data.filter((data) => {
-    return data.interaction === 'activity';
-  }).forEach((activity) => {
-    let found = false;
-    for(let i = queries.length - 1; i >= 0; i--) {
-      if(activity.tabId === queries[i].tabId && activity.timestamp > queries[i].timestamp) {
-        found = true;
-        queries[i].urls.push(activity);
-        break;
-      }
-    }
-
-    Query.insertMany(queries)
-    .then(() => {
-      console.log('ADDED');
-    })
-    .catch((err) => {
-     console.log(err);
-    });
-
-  //   if(!found) {
-  //     let last_query = Query.find({
-  //       tabId: activity.tabId,
-  //       interaction: 'query',
-  //       timestamp: {
-  //         $lt: activity.timestamp
-  //       }
-  //     }).sort('-timestamp').limit(1);
-  //   }
-  //   console.log(last_query);
+  Query.insertMany(queries)
+  .then((queries) => {
+    console.log(queries);
+  })
+  .catch((err) => {
+   console.log(err);
   });
 
-  res.json({success: queries});
+  let activities = data.filter((dataItem) => {
+    return dataItem.interaction === 'activity';
+  });
+
+  Activity.insertMany(activities)
+  .then((activities) => {
+    console.log(activities);
+  })
+  .catch((err) => {
+   console.log(err);
+  });
+
+  res.json({success: true});
 });
+
+// router.post('/activities', (req, res, next) => {
+//   let activies = req.body.activities;
+
+//   Activity.insertMany(data)
+//   .then((activities) => {
+//     console.log(activities);
+//   })
+//   .catch((err) => {
+//    console.log(err);
+//   });
+
+//   res.json({success: true});
+// });
 
 router.get('/search', (req, res, next) => {
   let query_string = url.parse(req.url, true).query;

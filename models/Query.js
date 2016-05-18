@@ -1,10 +1,19 @@
 const mongoose = require('mongoose');
 
 const querySchema = new mongoose.Schema({
-  query: {type: String, required: true},
-  timestamp: {type: Date, required: true},
+  frameId: {type: Number},
+  fromCache: {type: Boolean},
+  interaction: {type: String},
+  ip: {type: String},
+  method: {type: String},
+  parentFrameId: {type: Number},
+  requestId: {type: String},
+  statusCode: {type: Number},
+  statusLine: {type: String},
   tabId: {type: Number, required: true},
-  urls: {type: [mongoose.Schema.Types.Mixed]}
+  timeStamp: {type: Date, required: true},
+  type: {type: String},
+  url: {type: String, required: true}
 });
 
 var Query = mongoose.model('Query', querySchema);
