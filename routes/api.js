@@ -16,25 +16,25 @@ router.post('/queries', (req, res, next) => {
 
   Query.insertMany(queries)
   .then((queries) => {
-    console.log("QUERIES", queries);
+
+    let activities = data.filter((dataItem) => {
+      return dataItem.interaction === 'activity';
+    });
+
+    Activity.insertMany(activities)
+    .then((activities) => {
+      res.json({success: true});
+    })
+    .catch((err) => {
+     res.json({success: false});
+    });
+
   })
   .catch((err) => {
-   console.log("QUERIES ERROR", err);
+   res.json({success: false});
   });
 
-  let activities = data.filter((dataItem) => {
-    return dataItem.interaction === 'activity';
-  });
 
-  Activity.insertMany(activities)
-  .then((activities) => {
-    console.log("ACTIVITIES", activities);
-  })
-  .catch((err) => {
-   console.log("ACTIVITIES ERROR", err);
-  });
-
-  res.json({success: true});
 });
 
 // router.post('/activities', (req, res, next) => {
