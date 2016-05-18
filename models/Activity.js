@@ -5,7 +5,7 @@ const activitySchema = new mongoose.Schema({
   interaction: {type: String},
   processId: {type: Number},
   tabId: {type: Number, required: true},
-  timeStamep: {type: Date, required: true},
+  timeStamp: {type: Date, required: true},
   transitionQualifier: {type: [String]},
   transitionType: {type: String},
   url: {type: String, required: true}
