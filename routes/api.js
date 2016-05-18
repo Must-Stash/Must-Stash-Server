@@ -16,10 +16,10 @@ router.post('/queries', (req, res, next) => {
 
   Query.insertMany(queries)
   .then((queries) => {
-    console.log(queries);
+    console.log("QUERIES", queries);
   })
   .catch((err) => {
-   console.log(err);
+   console.log("QUERIES ERROR", err);
   });
 
   let activities = data.filter((dataItem) => {
@@ -28,10 +28,10 @@ router.post('/queries', (req, res, next) => {
 
   Activity.insertMany(activities)
   .then((activities) => {
-    console.log(activities);
+    console.log("ACTIVITIES", activities);
   })
   .catch((err) => {
-   console.log(err);
+   console.log("ACTIVITIES ERROR", err);
   });
 
   res.json({success: true});
