@@ -20,8 +20,10 @@
   "homepage": "https://github.com/Must-Stash/Must-Stash-Server#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
-    "mongoose": "^4.4.17"
+    "mongoose": "^4.4.17",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "nodemon": "^1.9.2"
