@@ -18,7 +18,6 @@ router.post('/qa', (req, res, next) => {
       let query_string = url.parse(query.url, true).query.q;
       query.query_string = query_string;
     }
-    data[i].url = activity.url;
 
     request(activity.url, (error, response, body) => {
       if (!error && response.statusCode == 200) {
@@ -65,9 +64,27 @@ router.get('/search', (req, res, next) => {
     });
 
     mongo.getMatchingQA(urls, (error, QAresults) => {
-      console.log("ESRESULTS", ESresults);
+
+      var topMatches = [];
+
+      ESresults.forEach(function(ES){
+        ES.instances = 0;
+        ES.oqScore = 0;
+
+        QAresults.forEach(function(QA){
+          if(ES._source.url === QA.activity.url){
+            ES.instances += 1;
+          }
+        });
+
+        ES.totalScore = ES._score * 10 + ES.instances + ES.oqScore;
+
+        topMatches.push(ES);
+
+      });
+
       res.json({
-        success: ESresults,
+        success: topMatches,
         QA: QAresults,
         error : error
       });
