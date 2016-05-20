@@ -48,9 +48,11 @@
 	
 	var React = __webpack_require__(1),
 	    ReactDOM = __webpack_require__(33),
-	    LandingPage = __webpack_require__(168);
+	    LandingPage = __webpack_require__(168),
+	    DataVis = __webpack_require__(174),
+	    About = __webpack_require__(175);
 	
-	ReactDOM.render(React.createElement(LandingPage, null), document.getElementById('App'));
+	ReactDOM.render(React.createElement(LandingPage, null), React.createElement(DataVis, null), React.createElement(About, null), document.getElementById('App'));
 
 /***/ },
 /* 1 */
@@ -21973,6 +21975,64 @@
 	  }
 	});
 	module.exports = List;
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var DataVis = React.createClass({
+	  displayName: 'DataVis',
+	
+	
+	  render: function render() {
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'p',
+	        null,
+	        ' Data Visualization'
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = DataVis;
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var About = React.createClass({
+	  displayName: 'About',
+	
+	
+	  render: function render() {
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'p',
+	        null,
+	        ' About '
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = About;
 
 /***/ }
 /******/ ]);
