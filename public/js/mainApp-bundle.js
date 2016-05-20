@@ -52,7 +52,10 @@
 	    DataVis = __webpack_require__(174),
 	    About = __webpack_require__(175);
 	
-	ReactDOM.render(React.createElement(LandingPage, null), React.createElement(DataVis, null), React.createElement(About, null), document.getElementById('App'));
+	ReactDOM.render(React.createElement(LandingPage, null),
+	// <DataVis />,
+	// <About />,
+	document.getElementById('App'));
 
 /***/ },
 /* 1 */
@@ -20191,9 +20194,9 @@
 	
 	var React = __webpack_require__(1),
 	    $ = __webpack_require__(169),
-	    Nav = __webpack_require__(171),
-	    Header = __webpack_require__(172),
-	    List = __webpack_require__(173);
+	    List = __webpack_require__(171),
+	    Nav = __webpack_require__(172),
+	    Header = __webpack_require__(173);
 	
 	var LandingPage = React.createClass({
 	  displayName: 'LandingPage',
@@ -20206,13 +20209,15 @@
 	  },
 	
 	  loadDataFromServer: function loadDataFromServer() {
+	    // var uri = "http://www.codeacademy.com";
 	    $.ajax({
-	      url: "http://127.0.0.1:3000/api/search?q=" + encodeURIComponent('cats'),
+	      url: "/api/search?q=" + encodeURIComponent('cat'),
 	      method: 'GET',
 	      cache: false,
 	      success: function (data) {
+	        console.log('data', data);
 	        this.setState({
-	          urlList: data
+	          urlList: data.success
 	        });
 	      }.bind(this),
 	      error: function (xhr, status, err) {
@@ -20241,6 +20246,7 @@
 	  }
 	
 	});
+	
 	module.exports = LandingPage;
 
 /***/ },
@@ -21866,6 +21872,43 @@
 	
 	var React = __webpack_require__(1);
 	
+	var List = React.createClass({
+	  displayName: 'List',
+	
+	
+	  render: function render() {
+	    var array = this.props.list;
+	    console.log(array, 'array');
+	    var arrayItems = array.map(function (activity) {
+	      return React.createElement(
+	        'a',
+	        { href: activity._source.url, key: activity._id },
+	        activity._source.url
+	      );
+	    });
+	    return React.createElement(
+	      'div',
+	      { className: 'List' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'whatever'
+	      ),
+	      arrayItems
+	    );
+	  }
+	});
+	
+	module.exports = List;
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
 	var Nav = React.createClass({
 	  displayName: 'Nav',
 	
@@ -21920,7 +21963,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21949,32 +21992,6 @@
 	  }
 	});
 	module.exports = Header;
-
-/***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	
-	var List = React.createClass({
-	  displayName: 'List',
-	
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'List' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'List '
-	      )
-	    );
-	  }
-	});
-	module.exports = List;
 
 /***/ },
 /* 174 */

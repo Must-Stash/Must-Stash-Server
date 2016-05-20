@@ -2,9 +2,9 @@
 
 const React       = require('react'),
       $           = require('jquery'),
+      List      = require('./list.js'),
       Nav         = require('./nav.js'),
-      Header      = require('./header.js'),
-      List      = require('./list.js')
+      Header      = require('./header.js')
       ;
 
 const LandingPage = React.createClass({
@@ -16,18 +16,20 @@ const LandingPage = React.createClass({
   },
 
   loadDataFromServer: function() {
+    // var uri = "http://www.codeacademy.com";
     $.ajax({
-      url: "http://127.0.0.1:3000/api/search?q=" + encodeURIComponent('cats'),
+      url: "/api/search?q=" + encodeURIComponent('cat'),
       method: 'GET',
       cache: false,
       success: function(data) {
+        console.log('data', data);
         this.setState({
-          urlList: data
+          urlList: data.success
         });
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error("Error")
-      }.bind(this)
+        console.error("Error");
+      }.bind(this),
     })
   },
   componentDidMount: function() {
@@ -50,5 +52,6 @@ const LandingPage = React.createClass({
   }
 
 })
+
 module.exports = LandingPage;
 

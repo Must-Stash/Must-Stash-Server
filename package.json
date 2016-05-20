@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/nodemon server.js",
      "js:build": "./node_modules/.bin/webpack --progress --colors --watch",
-     "dev": "parallelshell 'npm run js:build'"
+     "dev": "parallelshell 'npm run js:build' 'npm start'"
   },
   "repository": {
     "type": "git",
