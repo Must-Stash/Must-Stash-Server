@@ -10,7 +10,7 @@ const React       = require('react'),
 
   ReactDOM.render(
     <LandingPage />,
-    <DataVis />,
-    <About />,
+    // <DataVis />,
+    // <About />,
     document.getElementById('App')
     )
