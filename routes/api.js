@@ -56,7 +56,57 @@ router.get('/search', (req, res, next) => {
   let query_string = url.parse(req.url, true).query.q;
   elastic.getUrls(query_string)
   .then((response) => {
-    res.json({success: response.hits.hits});
+    var urls = [];
+    var ESresults = response.hits.hits;
+
+    ESresults.forEach(function(element){
+      urls.push(element._source.url);
+    });
+
+    mongo.getMatchingQA(urls, (error, QAresults) => {
+
+      var topMatches = [];
+
+      ESresults.forEach(function(ES){
+        ES.instances = 0;
+        ES.oqScore = 0;
+
+        QAresults.forEach(function(QA){
+          if(ES._source.url === QA.activity.url){
+            ES.instances += 1;
+          }
+
+          var originalQuery = QA.query.query_string.split(" ");
+          var currentQuery = query_string.split(" ");
+
+          for (var i in originalQuery){
+            for(var j in currentQuery){
+              if(originalQuery[i] === currentQuery[j]){
+                ES.oqScore++;
+              }
+            }
+          }
+
+        });
+
+        ES.totalScore = ES._score * 10 + ES.instances + ES.oqScore;
+
+        topMatches.push(ES);
+
+      });
+
+      topMatches.sort(function(a,b){
+        return b.totalScore - a.totalScore;
+      });
+
+      res.json({
+        success: topMatches,
+        QA: QAresults,
+        query : query_string
+      });
+    });
+
+
   })
   .catch((err) => {
     res.json({success: false});
