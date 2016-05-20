@@ -20204,14 +20204,15 @@
 	
 	  getInitialState: function getInitialState() {
 	    return {
-	      urlList: []
+	      urlList: [],
+	      query: ''
 	    };
 	  },
 	
-	  loadDataFromServer: function loadDataFromServer() {
-	    // var uri = "http://www.codeacademy.com";
+	  loadDataFromServer: function loadDataFromServer(query) {
+	    console.log('query', query);
 	    $.ajax({
-	      url: "/api/search?q=" + encodeURIComponent('cat'),
+	      url: "/api/search?q=" + encodeURIComponent(query),
 	      method: 'GET',
 	      cache: false,
 	      success: function (data) {
@@ -20225,9 +20226,6 @@
 	      }.bind(this)
 	    });
 	  },
-	  componentDidMount: function componentDidMount() {
-	    this.loadDataFromServer();
-	  },
 	
 	  render: function render() {
 	
@@ -20240,7 +20238,7 @@
 	        ' Landing Page'
 	      ),
 	      React.createElement(Nav, null),
-	      React.createElement(Header, null),
+	      React.createElement(Header, { loadDataFromServer: this.loadDataFromServer }),
 	      React.createElement(List, { list: this.state.urlList })
 	    );
 	  }
@@ -21974,7 +21972,14 @@
 	  displayName: 'Header',
 	
 	
+	  handleSubmit: function handleSubmit(event) {
+	    event.preventDefault();
+	    console.log('HERE', this.refs['searchBar'].value);
+	    this.props.loadDataFromServer(this.refs['searchBar'].value);
+	  },
+	
 	  render: function render() {
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'Header' },
@@ -21985,12 +21990,21 @@
 	      ),
 	      React.createElement(
 	        'form',
-	        { className: 'searchForm' },
-	        React.createElement('input', { type: 'text', id: 'bigSearchInput', placeholder: 'Enter Search Items' })
+	        { onSubmit: this.handleSubmit },
+	        React.createElement('input', {
+	          type: 'text',
+	          placeholder: 'Enter Search Items',
+	          ref: 'searchBar' }),
+	        React.createElement(
+	          'button',
+	          { id: 'searchBtn' },
+	          'Search'
+	        )
 	      )
 	    );
 	  }
 	});
+	
 	module.exports = Header;
 
 /***/ },
