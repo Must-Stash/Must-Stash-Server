@@ -18,7 +18,7 @@ router.post('/qa', (req, res, next) => {
       let query_string = url.parse(query.url, true).query.q;
       query.query_string = query_string;
     }
-    data.url = activity.url;
+    data[i].url = activity.url;
 
     request(activity.url, (error, response, body) => {
       if (!error && response.statusCode == 200) {
@@ -61,10 +61,19 @@ router.get('/search', (req, res, next) => {
     var ESresults = response.hits.hits;
 
     ESresults.forEach(function(element){
-
+      urls.push(element._source.url);
     });
 
-    res.json({success: ESresults});
+    mongo.getMatchingQA(urls, (error, QAresults) => {
+      console.log("ESRESULTS", ESresults);
+      res.json({
+        success: ESresults,
+        QA: QAresults,
+        error : error
+      });
+    });
+
+
   })
   .catch((err) => {
     res.json({success: false});
