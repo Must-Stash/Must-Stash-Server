@@ -72,7 +72,11 @@ router.get('/search', (req, res, next) => {
 
         QAresults.forEach(function(QA){
           if(ES._source.url === QA.activity.url){
-            ES.instances += 1;
+            if(QA.activity.visitCount) {
+              ES.instances += QA.activity.visitCount;
+            } else {
+              ES.instances += 1;
+            }
           }
 
           if(QA.query) {
