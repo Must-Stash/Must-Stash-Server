@@ -18,6 +18,7 @@ router.post('/qa', (req, res, next) => {
       let query_string = url.parse(query.url, true).query.q;
       query.query_string = query_string;
     }
+    data.url = activity.url;
 
     request(activity.url, (error, response, body) => {
       if (!error && response.statusCode == 200) {
@@ -56,7 +57,14 @@ router.get('/search', (req, res, next) => {
   let query_string = url.parse(req.url, true).query.q;
   elastic.getUrls(query_string)
   .then((response) => {
-    res.json({success: response.hits.hits});
+    var urls = [];
+    var ESresults = response.hits.hits;
+
+    ESresults.forEach(function(element){
+
+    });
+
+    res.json({success: ESresults});
   })
   .catch((err) => {
     res.json({success: false});
