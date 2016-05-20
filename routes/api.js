@@ -95,6 +95,10 @@ router.get('/search', (req, res, next) => {
 
       });
 
+      topMatches.sort(function(a,b){
+        return b.totalScore - a.totalScore;
+      });
+
       res.json({
         success: topMatches,
         QA: QAresults,
