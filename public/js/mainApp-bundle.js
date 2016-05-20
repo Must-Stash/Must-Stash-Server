@@ -48,31 +48,9 @@
 	
 	var React = __webpack_require__(1),
 	    ReactDOM = __webpack_require__(33),
-	    Nav = __webpack_require__(168),
-	    Header = __webpack_require__(169);
+	    LandingPage = __webpack_require__(168);
 	
-	var AppPage = React.createClass({
-	  displayName: 'AppPage',
-	
-	
-	  render: function render() {
-	
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h1',
-	        null,
-	        ' Hello World '
-	      ),
-	      React.createElement(Nav, null),
-	      React.createElement(Header, null)
-	    );
-	  }
-	
-	});
-	
-	ReactDOM.render(React.createElement(AppPage, null), document.getElementById('AppPage'));
+	ReactDOM.render(React.createElement(LandingPage, null), document.getElementById('App'));
 
 /***/ },
 /* 1 */
@@ -20209,6 +20187,40 @@
 
 	'use strict';
 	
+	var React = __webpack_require__(1),
+	    Nav = __webpack_require__(169),
+	    Header = __webpack_require__(170),
+	    List = __webpack_require__(171);
+	
+	var LandingPage = React.createClass({
+	  displayName: 'LandingPage',
+	
+	
+	  render: function render() {
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h1',
+	        null,
+	        ' Landing Page'
+	      ),
+	      React.createElement(Nav, null),
+	      React.createElement(Header, null),
+	      React.createElement(List, null)
+	    );
+	  }
+	
+	});
+	module.exports = LandingPage;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
 	var React = __webpack_require__(1);
 	
 	var Nav = React.createClass({
@@ -20265,7 +20277,7 @@
 	module.exports = Nav;
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20294,6 +20306,32 @@
 	  }
 	});
 	module.exports = Header;
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var List = React.createClass({
+	  displayName: 'List',
+	
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'List' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'List '
+	      )
+	    );
+	  }
+	});
+	module.exports = List;
 
 /***/ }
 /******/ ]);
