@@ -1,7 +1,6 @@
 'use strict';
 
-const React = require('react'),
-      Nav   = requrie('./nav.js');
+const React = require('react')
 
   const Header = React.createClass({
 

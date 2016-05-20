@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './header/nav.js',
+  entry: './src/landing/index.js',
   output: {
     filename: './public/js/mainApp-bundle.js'
   },
