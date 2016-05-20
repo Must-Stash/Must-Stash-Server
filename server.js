@@ -11,13 +11,6 @@ const api = require('./routes/api');
 mongo.connect('mongodb://localhost:27017/muststash', () => {
   console.log('mongo connected');
 });
-//mongoose.connect("mongodb://localhost:27017/muststash");
-//const db = mongoose.connection;
-
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//   console.log("mongoose connected!");
-// });
 
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 app.use(bodyParser.json({limit: '50mb'}));

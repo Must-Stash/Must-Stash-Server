@@ -8,59 +8,30 @@ const request = require('request');
 const elastic = require('../lib/elasticsearch');
 const mongo = require('../lib/mongodb');
 
-//const Query = require('../models/Query');
-//const Activity = require('../models/Activity');
-
-// router.post('/queries', (req, res, next) => {
-//   let data = req.body.data;
-
-//   let queries = [];
-//   let activities = [];
-
-//   for(let i = 0; i < data.length; i++) {
-//     if(data[i].interaction === 'query') {
-//       queries.push(data[i]);
-//     } else if(data[i].interaction === 'activity') {
-//       activities.push(data[i]);
-//     }
-//   }
-
-//   Query.insertMany(queries)
-//   .then((queries) => {
-//     Activity.insertMany(activities)
-//     .then((activities) => {
-//       res.json({success: true});
-//     })
-//     .catch((err) => {
-//       res.json({success: false})
-//     });
-//   })
-//   .catch((err) => {
-//     res.json({success: false})
-//   });
-
-// });
-
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
 
   for(let i = 0; i < data.length; i++) {
     let query = data[i].query;
     let activity = data[i].activity;
-
-    if(query.tabId === activity.tabId && query.timeStamp < activity.timeStamp) {
-      request(data[i].url, (error, response, body) => {
-        if (!error && response.statusCode == 200) {
-          elastic.addUrls(response.request.uri.href, body)
-          .then((response) => {
-            res.json({success: response.hits.hits});
-          })
-          .catch((err) => {
-            res.json({success: false});
-          });
-        }
-      });
+    if(query) {
+      let query_string = url.parse(query.url, true).query.q;
+      query.query_string = query_string;
     }
+
+    request(activity.url, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+        elastic.addUrls(response.request.uri.href, body)
+        .then((response) => {
+          console.log(response);
+          res.json({success: response.hits.hits});
+        })
+        .catch((err) => {
+          res.json({success: false});
+        });
+      }
+    });
+
   }
 
   mongo.addQA(data, (err, response) => {
@@ -70,19 +41,6 @@ router.post('/qa', (req, res, next) => {
     res.json({success: true});
   });
 
-  // for(let i = 0; i < data.length; i++) {
-  //   request(data[i].url, (error, response, body) => {
-  //     if (!error && response.statusCode == 200) {
-  //       elastic.addUrls(response.request.uri.href, body)
-  //       .then((response) => {
-  //         res.json({success: response.hits.hits});
-  //       })
-  //       .catch((err) => {
-  //         res.json({success: false})
-  //       });
-  //     }
-  //   });
-  // }
 });
 
 router.get('/qa', (req, res, next) => {
