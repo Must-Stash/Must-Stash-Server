@@ -4,9 +4,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const mongo = require('./lib/mongodb');
 
-app.use(bodyParser.urlencoded({extended: true }));
-app.use(bodyParser.json());
+const api = require('./routes/api');
+
+mongo.connect('mongodb://localhost:27017/muststash', () => {
+  console.log('mongo connected');
+});
+
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+
+app.use('/api', api)
 
 app.use(express.static(__dirname + '/public'));
 

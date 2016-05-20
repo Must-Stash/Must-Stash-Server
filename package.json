@@ -24,7 +24,11 @@
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
     "react": "^15.0.2",
-    "react-dom": "^15.0.2"
+    "react-dom": "^15.0.2",
+    "elasticsearch": "^11.0.1",
+    "mongodb": "^2.1.19",
+    "request": "^2.72.0"
+
   },
   "devDependencies": {
     "nodemon": "^1.9.2",
