@@ -11,8 +11,12 @@ const AppPage = React.createClass({
   render: function() {
 
     return (
-      <h1> Hello World </h1>
+      <div>
+        <h1> Hello World </h1>
+        <Nav />
+        <Header />
 
+      </div>
       )
 
   }
@@ -21,6 +25,7 @@ const AppPage = React.createClass({
 
   ReactDOM.render(
     <AppPage />,
+
     document.getElementById('AppPage')
 
     )

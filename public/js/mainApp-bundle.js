@@ -58,9 +58,15 @@
 	  render: function render() {
 	
 	    return React.createElement(
-	      'h1',
+	      'div',
 	      null,
-	      ' Hello World '
+	      React.createElement(
+	        'h1',
+	        null,
+	        ' Hello World '
+	      ),
+	      React.createElement(Nav, null),
+	      React.createElement(Header, null)
 	    );
 	  }
 	
