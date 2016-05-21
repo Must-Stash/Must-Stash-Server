@@ -6,7 +6,8 @@ const DataVisualPage = React.createClass({
   render: function() {
     return (
       <div id="DataPage">
-        <p>Data Visualization</p>
+        <h1>Data Visualization</h1>
+        <p>DOPE A$$ VISUAL!</p>
       </div>
     )
   }

@@ -1,19 +1,18 @@
-'use strict';
-
-const React = require('react');
+import React from 'react';
+import { IndexLink, Link } from 'react-router';
 
 const Nav = React.createClass({
   render: function (){
-    return(
+    return (
       <div id="nav">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/mySearch">My History</a></li>
-          <li><a href="/about">About</a></li>
+          <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><Link to="/mySearch" activeClassName="active">My History</Link></li>
+          <li><Link to="/about" activeClassName="active">About</Link></li>
         </ul>
       </div>
     )
   }
-});
+})
 
 module.exports = Nav;

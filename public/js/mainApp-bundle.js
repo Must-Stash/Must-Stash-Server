@@ -50,17 +50,23 @@
 	    ReactDOM = __webpack_require__(33),
 	    Router = __webpack_require__(168).Router,
 	    Route = __webpack_require__(168).Router,
+	    IndexRoute = __webpack_require__(168).IndexRoute,
 	    browserHistory = __webpack_require__(168).browserHistory,
 	    LandingPage = __webpack_require__(229),
 	    DataVisualPage = __webpack_require__(235),
-	    AboutPage = __webpack_require__(236);
+	    AboutPage = __webpack_require__(236),
+	    Header = __webpack_require__(234);
 	
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: browserHistory },
-	  React.createElement(Route, { path: '/', component: LandingPage }),
-	  React.createElement(Route, { path: '/mySearch', component: DataVisualPage }),
-	  React.createElement(Route, { path: '/about', component: AboutPage })
+	  React.createElement(
+	    Route,
+	    { path: '/', component: LandingPage },
+	    React.createElement(IndexRoute, { component: Header }),
+	    React.createElement(Route, { path: '/mySearch', component: DataVisualPage }),
+	    React.createElement(Route, { path: '/about', component: AboutPage })
+	  )
 	), document.getElementById('App'));
 
 /***/ },
@@ -26016,13 +26022,12 @@
 	  },
 	
 	  render: function render() {
-	
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(Nav, null),
-	      React.createElement(Header, { loadDataFromServer: this.loadDataFromServer }),
-	      React.createElement(List, { list: this.state.urlList })
+	      React.createElement(List, { list: this.state.urlList }),
+	      this.props.children
 	    );
 	  }
 	});
@@ -27669,11 +27674,6 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'List' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'whatever'
-	      ),
 	      arrayItems
 	    );
 	  }
@@ -27687,42 +27687,48 @@
 
 	'use strict';
 	
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 	
-	var Nav = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(168);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Nav = _react2.default.createClass({
 	  displayName: 'Nav',
 	
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      { id: 'nav' },
-	      React.createElement(
+	      _react2.default.createElement(
 	        'ul',
 	        null,
-	        React.createElement(
+	        _react2.default.createElement(
 	          'li',
 	          null,
-	          React.createElement(
-	            'a',
-	            { href: '/' },
+	          _react2.default.createElement(
+	            _reactRouter.IndexLink,
+	            { to: '/', activeClassName: 'active' },
 	            'Home'
 	          )
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'li',
 	          null,
-	          React.createElement(
-	            'a',
-	            { href: '/mySearch' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/mySearch', activeClassName: 'active' },
 	            'My History'
 	          )
 	        ),
-	        React.createElement(
+	        _react2.default.createElement(
 	          'li',
 	          null,
-	          React.createElement(
-	            'a',
-	            { href: '/about' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/about', activeClassName: 'active' },
 	            'About'
 	          )
 	        )
@@ -27794,9 +27800,14 @@
 	      'div',
 	      { id: 'DataPage' },
 	      React.createElement(
-	        'p',
+	        'h1',
 	        null,
 	        'Data Visualization'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'DOPE A$$ VISUAL!'
 	      )
 	    );
 	  }
@@ -27820,9 +27831,14 @@
 	      'div',
 	      { id: 'AboutPage' },
 	      React.createElement(
-	        'p',
+	        'h1',
 	        null,
-	        'About'
+	        'About Must-Stash'
+	      ),
+	      React.createElement(
+	        'p',
+	        { id: 'aboutMessage' },
+	        'Bacon ipsum dolor amet kielbasa shank sausage ham hock, frankfurter tail chicken jerky beef ribs short loin pancetta ham cow fatback kevin. Pork chop jerky salami chicken meatball turducken. Picanha shankle landjaeger, chicken turkey chuck rump spare ribs capicola tri-tip t-bone. Fatback tail turkey, tongue ribeye jowl doner tri-tip shankle corned beef beef short loin cupim rump. Prosciutto venison pork belly leberkas rump. Pancetta ham hock strip steak turducken. Shank sausage tail doner swine, t-bone filet mignon porchetta pork belly shoulder corned beef chicken jowl. Brisket salami pork loin fatback pork. Spare ribs pork loin fatback doner meatloaf venison jowl cupim strip steak ribeye picanha tail meatball. Meatball ball tip spare ribs, capicola cupim sirloin ham hock pork belly venison. Capicola pork loin hamburger turkey strip steak pork belly fatback turducken brisket pastrami meatball beef ribs ham hock shankle. Turkey ball tip picanha pork chop shankle short loin frankfurter porchetta ground round beef ribs prosciutto pastrami.'
 	      )
 	    );
 	  }
