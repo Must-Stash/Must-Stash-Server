@@ -10,6 +10,7 @@ const Nav = React.createClass({
           <li><Link to="/mySearch" activeClassName="active">My History</Link></li>
           <li><Link to="/about" activeClassName="active">About</Link></li>
         </ul>
+        {this.props.children}
       </div>
     )
   }

@@ -55,15 +55,16 @@
 	    LandingPage = __webpack_require__(229),
 	    DataVisualPage = __webpack_require__(235),
 	    AboutPage = __webpack_require__(236),
-	    Header = __webpack_require__(234);
+	    Header = __webpack_require__(234),
+	    Nav = __webpack_require__(233);
 	
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: browserHistory },
 	  React.createElement(
 	    Route,
-	    { path: '/', component: LandingPage },
-	    React.createElement(IndexRoute, { component: Header }),
+	    { path: '/', component: Nav },
+	    React.createElement(IndexRoute, { component: LandingPage }),
 	    React.createElement(Route, { path: '/mySearch', component: DataVisualPage }),
 	    React.createElement(Route, { path: '/about', component: AboutPage })
 	  )
@@ -26025,9 +26026,8 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Nav, null),
-	      React.createElement(List, { list: this.state.urlList }),
-	      this.props.children
+	      React.createElement(Header, { loadDataFromServer: this.loadDataFromServer }),
+	      React.createElement(List, { list: this.state.urlList })
 	    );
 	  }
 	});
@@ -35504,13 +35504,44 @@
 	  render: function render() {
 	    var array = this.props.list;
 	    console.log(array, 'array');
+	
 	    var arrayItems = array.map(function (activity) {
+	      var html = activity._source.html;
+	      var start = html.indexOf("<title>") + 7;
+	      var end = html.indexOf("</title>", start);
+	      var title = html.substring(start, end);
+	
+	      var startDes = html.indexOf("<p>") + 3;
+	      var endDes = html.indexOf("</p>", startDes);
+	      var description = html.substring(startDes, endDes);
+	
+	      description = description.replace(/<.+?>/g, '');
+	      description = description.replace(/ *\[[^\]]*]/g, '');
+	      description = description.replace(/[^a-z .?"']+/ig, '');
+	      description = description.replace(/\n/g, '');
+	      description = description.replace(/\t/g, '');
+	      description = description.replace(/['"]/g, '');
+	
 	      return React.createElement(
-	        'a',
-	        { href: activity._source.url, key: activity._id },
-	        activity._source.url
+	        'div',
+	        null,
+	        React.createElement(
+	          'a',
+	          { href: activity._source.url, key: activity._id },
+	          React.createElement(
+	            'p',
+	            null,
+	            title
+	          )
+	        ),
+	        React.createElement(
+	          'p',
+	          null,
+	          description
+	        )
 	      );
 	    });
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'List' },
@@ -35572,7 +35603,8 @@
 	            'About'
 	          )
 	        )
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});
@@ -35590,12 +35622,12 @@
 	var Header = React.createClass({
 	  displayName: 'Header',
 	
+	
 	  handleSubmit: function handleSubmit(event) {
 	    event.preventDefault();
 	    console.log('HERE', this.refs['searchBar'].value);
 	    this.props.loadDataFromServer(this.refs['searchBar'].value);
 	  },
-	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -35611,7 +35643,8 @@
 	        React.createElement('input', {
 	          type: 'text',
 	          placeholder: 'Enter Search Items',
-	          ref: 'searchBar' }),
+	          ref: 'searchBar'
+	        }),
 	        React.createElement(
 	          'button',
 	          { id: 'searchBtn' },

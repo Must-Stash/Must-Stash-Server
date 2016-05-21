@@ -36,9 +36,8 @@ const LandingPage = React.createClass({
   render: function() {
     return (
       <div>
-        <Nav />
+        <Header loadDataFromServer={this.loadDataFromServer}/>
         <List list={this.state.urlList} />
-        {this.props.children}
       </div>
     )
   }
