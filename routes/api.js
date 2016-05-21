@@ -12,27 +12,28 @@ const mongo = require('../lib/mongodb');
 
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
-
   // for(let i = 0; i < data.length; i++) {
-  for(let i = 0; i < 5; i++) {
-    let query = data[i].query;
-    let activity = data[i].activity;
-    if(query) {
-      let query_string = url.parse(query.url, true).query.q;
-      query.query_string = query_string;
-    }
-
-    request(activity.url, (error, response, body) => {
-      if (!error && response.statusCode == 200) {
-        elastic.addUrls(response.request.uri.href, body)
-        .then((response) => {
-          res.json({success: response.hits.hits});
-        })
-        .catch((err) => {
-          res.json({success: false});
-        });
+  for(let i = 0; i < data.length; i++) {
+    if(data[i]){
+      let query = data[i].query;
+      let activity = data[i].activity;
+      if(query) {
+        let query_string = url.parse(query.url, true).query.q;
+        query.query_string = query_string;
       }
-    });
+
+      request(activity.url, (error, response, body) => {
+        if (!error && response.statusCode == 200) {
+          elastic.addUrls(response.request.uri.href, body)
+          .then((response) => {
+            res.json({success: response.hits.hits});
+          })
+          .catch((err) => {
+            res.json({success: false});
+          });
+        }
+      });
+    }
 
   }
 
@@ -103,7 +104,7 @@ router.get('/search', (req, res, next) => {
           return Math.log(y) / Math.log(x);
         }
 
-        ES.totalScore = ES._score * 10 + Math.min(5, getBaseLog(2, ES.instances)) + ES.oqScore * 3;
+        ES.totalScore = ES._score * 20 + Math.min(4, getBaseLog(4, ES.instances)) + ES.oqScore * 5;
 
         topMatches.push(ES);
 
