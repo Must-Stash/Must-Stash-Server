@@ -100,7 +100,7 @@ router.get('/search', (req, res, next) => {
           return Math.log(y) / Math.log(x);
         }
 
-        ES.totalScore = ES._score * 10 + Math.max(5, getBaseLog(2, ES.instances)) + ES.oqScore * 3;
+        ES.totalScore = ES._score * 10 + Math.min(5, getBaseLog(2, ES.instances)) + ES.oqScore * 3;
 
         topMatches.push(ES);
 
