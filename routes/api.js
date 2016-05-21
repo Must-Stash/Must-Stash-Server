@@ -83,14 +83,16 @@ router.get('/search', (req, res, next) => {
           }
         });
 
-        if(ES.mongoQA.query){
-          var originalQuery = ES.mongoQA.query.query_string.split(" ");
-          var currentQuery = query_string.split(" ");
+        if(ES.mongoQA){
+          if(ES.mongoQA.query){
+            var originalQuery = ES.mongoQA.query.query_string.split(" ");
+            var currentQuery = query_string.split(" ");
 
-          for (var i in originalQuery){
-            for(var j in currentQuery){
-              if(originalQuery[i] === currentQuery[j]){
-                ES.oqScore++;
+            for (var i in originalQuery){
+              for(var j in currentQuery){
+                if(originalQuery[i] === currentQuery[j]){
+                  ES.oqScore++;
+                }
               }
             }
           }
