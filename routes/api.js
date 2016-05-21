@@ -12,27 +12,6 @@ const mongo = require('../lib/mongodb');
 
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
-<<<<<<< HEAD
-
-  for(let i = 0; i < data.length; i++) {
-    let query = data[i].query;
-    let activity = data[i].activity;
-    if(query) {
-      let query_string = url.parse(query.url, true).query.q;
-      query.query_string = query_string;
-    }
-
-    request(activity.url, (error, response, body) => {
-      if (!error && response.statusCode == 200) {
-        elastic.addUrls(response.request.uri.href, body)
-        .then((response) => {
-          res.json({success: response.hits.hits});
-        })
-        .catch((err) => {
-          res.json({success: false});
-        });
-=======
-  // for(let i = 0; i < data.length; i++) {
   for(let i = 0; i < data.length; i++) {
     if(data[i]){
       let query = data[i].query;
@@ -40,7 +19,6 @@ router.post('/qa', (req, res, next) => {
       if(query) {
         let query_string = url.parse(query.url, true).query.q;
         query.query_string = query_string;
->>>>>>> 59f81da2c2ef92d1d904fe02e77a4e22ae1b5480
       }
 
       request(activity.url, (error, response, body) => {
