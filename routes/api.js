@@ -73,6 +73,8 @@ router.get('/search', (req, res, next) => {
       ESresults.forEach(function(ES){
         ES.instances = 0;
         ES.oqScore = 0;
+        ES.inURL = 0;
+        var currentQuery = query_string.split(" ");
 
         QAresults.forEach(function(QA){
           if(ES._source.url === QA.activity.url){
@@ -88,7 +90,6 @@ router.get('/search', (req, res, next) => {
         if(ES.mongoQA){
           if(ES.mongoQA.query){
             var originalQuery = ES.mongoQA.query.query_string.split(" ");
-            var currentQuery = query_string.split(" ");
 
             for (var i in originalQuery){
               for(var j in currentQuery){
@@ -100,11 +101,20 @@ router.get('/search', (req, res, next) => {
           }
         }
 
+        var url = ES._source.url;
+
+        for (var u in currentQuery){
+          if(url.indexOf(currentQuery[u]) !== -1){
+            ES.inURL += 3;
+          }
+        }
+
+
         function getBaseLog(x, y) {
           return Math.log(y) / Math.log(x);
         }
 
-        ES.totalScore = ES._score * 20 + Math.min(4, getBaseLog(4, ES.instances)) + ES.oqScore * 5;
+        ES.totalScore = ES._score * 15 + Math.min(5, getBaseLog(2, ES.instances)) + ES.oqScore * 5 + ES.inURL;
 
         topMatches.push(ES);
 
