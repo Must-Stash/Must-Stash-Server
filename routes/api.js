@@ -8,6 +8,8 @@ const request = require('request');
 const elastic = require('../lib/elasticsearch');
 const mongo = require('../lib/mongodb');
 
+
+
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
 
