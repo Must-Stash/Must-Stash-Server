@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/nodemon server.js",
-     "js:build": "./node_modules/.bin/webpack --progress --colors --watch",
-     "dev": "parallelshell 'npm run js:build' 'npm start'"
+    "js:build": "./node_modules/.bin/webpack --progress --colors --watch",
+    "dev": "parallelshell 'npm run js:build' 'npm start'"
   },
   "repository": {
     "type": "git",
@@ -22,13 +22,13 @@
   "homepage": "https://github.com/Must-Stash/Must-Stash-Server#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
+    "mongodb": "^2.1.19",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
-    "elasticsearch": "^11.0.1",
-    "mongodb": "^2.1.19",
+    "react-router": "^2.4.1",
     "request": "^2.72.0"
-
   },
   "devDependencies": {
     "nodemon": "^1.9.2",
@@ -39,7 +39,6 @@
     "babel-preset-react": "^6.5.0",
     "jquery": "^2.2.3",
     "node-sass": "^3.7.0",
-    "nodemon": "^1.9.2",
     "parallelshell": "^2.0.0",
     "postcss-cli": "^2.5.2",
     "webpack": "^1.13.0"
