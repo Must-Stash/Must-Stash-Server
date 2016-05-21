@@ -13,8 +13,7 @@ const mongo = require('../lib/mongodb');
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
 
-  // for(let i = 0; i < data.length; i++) {
-  for(let i = 0; i < 5; i++) {
+  for(let i = 0; i < data.length; i++) {
     let query = data[i].query;
     let activity = data[i].activity;
     if(query) {
