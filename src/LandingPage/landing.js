@@ -2,14 +2,12 @@
 
 const React       = require('react'),
       $           = require('jquery'),
-      List      = require('./list.js'),
+      List        = require('./list.js'),
       Nav         = require('./nav.js'),
       Header      = require('./header.js')
       ;
 
 const LandingPage = React.createClass({
-
-
   getInitialState: function() {
       return {
         urlList: [],
@@ -35,21 +33,16 @@ const LandingPage = React.createClass({
     })
   },
 
-
   render: function() {
 
     return (
       <div>
-        <h1> Landing Page</h1>
         <Nav />
         <Header loadDataFromServer={this.loadDataFromServer}/>
         <List list={this.state.urlList} />
       </div>
-
-      )
-
+    )
   }
-
 })
 
 module.exports = LandingPage;
