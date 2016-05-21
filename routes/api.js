@@ -71,33 +71,48 @@ router.get('/search', (req, res, next) => {
       ESresults.forEach(function(ES){
         ES.instances = 0;
         ES.oqScore = 0;
+        console.log("oqScore - top", ES.oqScore);
 
         QAresults.forEach(function(QA){
+          console.log("oqScore - middle", ES.oqScore);
+
           if(ES._source.url === QA.activity.url){
             if(QA.activity.visitCount) {
-              ES.instances += QA.activity.visitCount;
+              ES.instances += parseInt(QA.activity.visitCount);
             } else {
               ES.instances += 1;
             }
           }
 
           if(QA.query) {
+            console.log("url", QA.activity.url);
             var originalQuery = QA.query.query_string.split(" ");
             var currentQuery = query_string.split(" ");
+
+            console.log("originalQuery",originalQuery);
+            console.log("currentQuery",currentQuery);
 
             for (var i in originalQuery){
               for(var j in currentQuery){
                 if(originalQuery[i] === currentQuery[j]){
+                  console.log("oq[i]",originalQuery[i]);
+                  console.log("cq[i]",currentQuery[j]);
                   ES.oqScore++;
                 }
               }
             }
           }
 
+          console.log("OQScore", ES.oqScore);
         });
 
-        ES.totalScore = ES._score * 10 + ES.instances + ES.oqScore;
+        function getBaseLog(x, y) {
+          return Math.log(y) / Math.log(x);
+        }
 
+        console.log("bottom", ES.oqScore);
+        ES.totalScore = ES._score * 20 + getBaseLog(5, ES.instances) + ES.oqScore;
+        console.log('ES.totalScore', ES.totalScore);
         topMatches.push(ES);
 
       });
