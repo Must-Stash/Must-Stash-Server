@@ -55,15 +55,16 @@
 	    LandingPage = __webpack_require__(229),
 	    DataVisualPage = __webpack_require__(235),
 	    AboutPage = __webpack_require__(236),
-	    Header = __webpack_require__(234);
+	    Header = __webpack_require__(234),
+	    Nav = __webpack_require__(233);
 	
 	ReactDOM.render(React.createElement(
 	  Router,
 	  { history: browserHistory },
 	  React.createElement(
 	    Route,
-	    { path: '/', component: LandingPage },
-	    React.createElement(IndexRoute, { component: Header }),
+	    { path: '/', component: Nav },
+	    React.createElement(IndexRoute, { component: LandingPage }),
 	    React.createElement(Route, { path: '/mySearch', component: DataVisualPage }),
 	    React.createElement(Route, { path: '/about', component: AboutPage })
 	  )
@@ -26025,9 +26026,8 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Nav, null),
-	      React.createElement(List, { list: this.state.urlList }),
-	      this.props.children
+	      React.createElement(Header, null),
+	      React.createElement(List, { list: this.state.urlList })
 	    );
 	  }
 	});
@@ -35572,7 +35572,8 @@
 	            'About'
 	          )
 	        )
-	      )
+	      ),
+	      this.props.children
 	    );
 	  }
 	});
@@ -35590,12 +35591,12 @@
 	var Header = React.createClass({
 	  displayName: 'Header',
 	
+	
 	  handleSubmit: function handleSubmit(event) {
 	    event.preventDefault();
 	    console.log('HERE', this.refs['searchBar'].value);
 	    this.props.loadDataFromServer(this.refs['searchBar'].value);
 	  },
-	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -35611,7 +35612,8 @@
 	        React.createElement('input', {
 	          type: 'text',
 	          placeholder: 'Enter Search Items',
-	          ref: 'searchBar' }),
+	          ref: 'searchBar'
+	        }),
 	        React.createElement(
 	          'button',
 	          { id: 'searchBtn' },
