@@ -27664,13 +27664,19 @@
 	  render: function render() {
 	    var array = this.props.list;
 	    console.log(array, 'array');
+	
 	    var arrayItems = array.map(function (activity) {
 	      return React.createElement(
 	        'a',
 	        { href: activity._source.url, key: activity._id },
-	        activity._source.url
+	        React.createElement(
+	          'p',
+	          null,
+	          activity._source.url
+	        )
 	      );
 	    });
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'List' },
