@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/nodemon server.js",
     "js:build": "./node_modules/.bin/webpack --progress --colors --watch",
-    "dev": "parallelshell 'npm run js:build' 'npm start'"
+    "dev": "parallelshell 'npm run js:build' 'npm start'",
+    "webpack": "./node_modules/.bin/webpack --progress --colors --watch"
   },
   "repository": {
     "type": "git",
@@ -26,12 +27,13 @@
     "express": "^4.13.4",
     "kue": "^0.11.0",
     "mongodb": "^2.1.19",
+    "mongodb": "^2.1.19",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
+    "react-router": "^2.4.1",
     "request": "^2.72.0"
   },
   "devDependencies": {
-    "nodemon": "^1.9.2",
     "autoprefixer": "^6.3.6",
     "babel-core": "^6.8.0",
     "babel-loader": "^6.2.4",

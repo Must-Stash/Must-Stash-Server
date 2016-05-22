@@ -9,8 +9,9 @@ const elastic = require('../lib/elasticsearch');
 const mongo = require('../lib/mongodb');
 const redis = require('../lib/redis');
 
-router.post('/qa', (req, res, next) => {
 
+
+router.post('/qa', (req, res, next) => {
   let data = req.body.data;
   mongo.addQA(data, (err, response) => {
     if(err) {
@@ -39,8 +40,8 @@ router.get('/search', (req, res, next) => {
   let query_string = url.parse(req.url, true).query.q;
   elastic.getUrls(query_string)
   .then((response) => {
-    var urls = [];
-    var ESresults = response.hits.hits;
+    let urls = [];
+    let ESresults = response.hits.hits;
 
     ESresults.forEach(function(element){
       urls.push(element._source.url);
@@ -48,37 +49,53 @@ router.get('/search', (req, res, next) => {
 
     mongo.getMatchingQA(urls, (error, QAresults) => {
 
-      var topMatches = [];
+      let topMatches = [];
 
       ESresults.forEach(function(ES){
         ES.instances = 0;
         ES.oqScore = 0;
+        ES.inURL = 0;
+        let currentQuery = query_string.split(" ");
 
         QAresults.forEach(function(QA){
           if(ES._source.url === QA.activity.url){
             if(QA.activity.visitCount) {
-              ES.instances += QA.activity.visitCount;
+              ES.instances += parseInt(QA.activity.visitCount);
             } else {
               ES.instances += 1;
             }
+            ES.mongoQA = QA;
           }
+        });
 
-          if(QA.query) {
-            var originalQuery = QA.query.query_string.split(" ");
-            var currentQuery = query_string.split(" ");
+        if(ES.mongoQA){
+          if(ES.mongoQA.query){
+            let originalQuery = ES.mongoQA.query.query_string.split(" ");
 
-            for (var i in originalQuery){
-              for(var j in currentQuery){
+            for (let i in originalQuery){
+              for(let j in currentQuery){
                 if(originalQuery[i] === currentQuery[j]){
                   ES.oqScore++;
                 }
               }
             }
           }
+        }
 
-        });
+        let url = ES._source.url;
 
-        ES.totalScore = ES._score * 10 + ES.instances + ES.oqScore;
+        for (let u in currentQuery){
+          if(url.indexOf(currentQuery[u]) !== -1){
+            ES.inURL += 3;
+          }
+        }
+
+
+        function getBaseLog(x, y) {
+          return Math.log(y) / Math.log(x);
+        }
+
+        ES.totalScore = ES._score * 15 + Math.min(5, getBaseLog(2, ES.instances)) + ES.oqScore * 5 + ES.inURL;
 
         topMatches.push(ES);
 
