@@ -21,11 +21,11 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('*', function(req, res){
   res.sendFile('./public/index.html',
-              {
-                root  : __dirname
-              });
+    {
+      root  : __dirname
+    }
+  );
 });
-
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
