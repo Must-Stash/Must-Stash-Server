@@ -1,3 +1,6 @@
 node_modules/
 .DS_Store
 npm-debug.log
+*.hot-update.js
+*.hot-update.json
+*.hot-update.js.map
