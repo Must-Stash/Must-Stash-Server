@@ -7,36 +7,20 @@ const request = require('request');
 
 const elastic = require('../lib/elasticsearch');
 const mongo = require('../lib/mongodb');
+const redis = require('../lib/redis');
 
 router.post('/qa', (req, res, next) => {
+
   let data = req.body.data;
-
-  for(let i = 0; i < data.length; i++) {
-    let query = data[i].query;
-    let activity = data[i].activity;
-    if(query) {
-      let query_string = url.parse(query.url, true).query.q;
-      query.query_string = query_string;
-    }
-
-    request(activity.url, (error, response, body) => {
-      if (!error && response.statusCode == 200) {
-        elastic.addUrls(response.request.uri.href, body)
-        .then((response) => {
-          res.json({success: response.hits.hits});
-        })
-        .catch((err) => {
-          res.json({success: false});
-        });
-      }
-    });
-
-  }
-
   mongo.addQA(data, (err, response) => {
     if(err) {
       return res.json({success: false});
     }
+
+    data.forEach((qa) => {
+      redis.newJob(qa);
+    });
+
     res.json({success: true});
   });
 
@@ -116,10 +100,6 @@ router.get('/search', (req, res, next) => {
   .catch((err) => {
     res.json({success: false});
   });
-});
-
-router.post('/history', (req, res, next) => {
-  res.json({success: true});
 });
 
 module.exports = router;
