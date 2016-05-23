@@ -17,7 +17,9 @@ router.post('/qa', (req, res, next) => {
       return res.json({success: false});
     }
 
-    redis.newJob(data);
+    for(let i = 0; i < data.length; i++) {
+      redis.newJob(data[i]);
+    }
 
     res.json({success: true});
   });
