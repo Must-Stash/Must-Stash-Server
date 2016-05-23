@@ -7,39 +7,18 @@ const request = require('request');
 
 const elastic = require('../lib/elasticsearch');
 const mongo = require('../lib/mongodb');
-
+const redis = require('../lib/redis');
 
 
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
-  for(let i = 0; i < data.length; i++) {
-    if(data[i]){
-      let query = data[i].query;
-      let activity = data[i].activity;
-      if(query) {
-        let query_string = url.parse(query.url, true).query.q;
-        query.query_string = query_string;
-      }
-
-      request(activity.url, (error, response, body) => {
-        if (!error && response.statusCode == 200) {
-          elastic.addUrls(response.request.uri.href, body)
-          .then((response) => {
-            res.json({success: response.hits.hits});
-          })
-          .catch((err) => {
-            res.json({success: false});
-          });
-        }
-      });
-    }
-
-  }
-
   mongo.addQA(data, (err, response) => {
     if(err) {
       return res.json({success: false});
     }
+
+    redis.newJob(data);
+
     res.json({success: true});
   });
 
@@ -58,8 +37,8 @@ router.get('/search', (req, res, next) => {
   let query_string = url.parse(req.url, true).query.q;
   elastic.getUrls(query_string)
   .then((response) => {
-    var urls = [];
-    var ESresults = response.hits.hits;
+    let urls = [];
+    let ESresults = response.hits.hits;
 
     ESresults.forEach(function(element){
       urls.push(element._source.url);
@@ -67,13 +46,13 @@ router.get('/search', (req, res, next) => {
 
     mongo.getMatchingQA(urls, (error, QAresults) => {
 
-      var topMatches = [];
+      let topMatches = [];
 
       ESresults.forEach(function(ES){
         ES.instances = 0;
         ES.oqScore = 0;
         ES.inURL = 0;
-        var currentQuery = query_string.split(" ");
+        let currentQuery = query_string.split(" ");
 
         QAresults.forEach(function(QA){
           if(ES._source.url === QA.activity.url){
@@ -88,10 +67,10 @@ router.get('/search', (req, res, next) => {
 
         if(ES.mongoQA){
           if(ES.mongoQA.query){
-            var originalQuery = ES.mongoQA.query.query_string.split(" ");
+            let originalQuery = ES.mongoQA.query.query_string.split(" ");
 
-            for (var i in originalQuery){
-              for(var j in currentQuery){
+            for (let i in originalQuery){
+              for(let j in currentQuery){
                 if(originalQuery[i] === currentQuery[j]){
                   ES.oqScore++;
                 }
@@ -100,9 +79,9 @@ router.get('/search', (req, res, next) => {
           }
         }
 
-        var url = ES._source.url;
+        let url = ES._source.url;
 
-        for (var u in currentQuery){
+        for (let u in currentQuery){
           if(url.indexOf(currentQuery[u]) !== -1){
             ES.inURL += 3;
           }
@@ -155,10 +134,6 @@ router.get('/search', (req, res, next) => {
   .catch((err) => {
     res.json({success: false});
   });
-});
-
-router.post('/history', (req, res, next) => {
-  res.json({success: true});
 });
 
 module.exports = router;
