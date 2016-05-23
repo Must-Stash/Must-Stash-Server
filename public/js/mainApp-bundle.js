@@ -35522,6 +35522,10 @@
 	      description = description.replace(/\t/g, '');
 	      description = description.replace(/['"]/g, '');
 	
+	      if (description.length > 250) {
+	        description = description.substring(0, 250) + "...";
+	      }
+	
 	      return React.createElement(
 	        'div',
 	        null,

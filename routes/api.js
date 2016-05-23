@@ -123,10 +123,30 @@ router.get('/search', (req, res, next) => {
         return b.totalScore - a.totalScore;
       });
 
+      var topMatchesUnique = [];
+
+      topMatches.forEach(function(element){
+        if(topMatchesUnique.length === 0){
+          topMatchesUnique.push(element);
+        }
+        else {
+          var url = element._source.url;
+
+          var exists = topMatchesUnique.some(function(element){
+            if(element._source.url === url){
+              return true;
+            }
+            return false;
+          });
+
+          if(exists === false){
+            topMatchesUnique.push(element);
+          }
+        }
+      });
+
       res.json({
-        success: topMatches,
-        QA: QAresults,
-        query : query_string
+        success: topMatchesUnique
       });
     });
 

@@ -8,6 +8,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
+        excludes: /node_modules/,
         loader: 'babel-loader',
         query: {
           compact: false,
