@@ -10,7 +10,6 @@ const mongo = require('../lib/mongodb');
 const redis = require('../lib/redis');
 
 
-
 router.post('/qa', (req, res, next) => {
   let data = req.body.data;
   mongo.addQA(data, (err, response) => {
@@ -18,9 +17,7 @@ router.post('/qa', (req, res, next) => {
       return res.json({success: false});
     }
 
-    data.forEach((qa) => {
-      redis.newJob(qa);
-    });
+    redis.newJob(data);
 
     res.json({success: true});
   });
