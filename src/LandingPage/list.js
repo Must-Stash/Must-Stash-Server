@@ -25,6 +25,10 @@ const List = React.createClass({
       description = description.replace(/\t/g, '');
       description = description.replace(/['"]/g, '');
 
+      if(description.length > 250){
+        description = description.substring(0,250) + "..."
+      }
+
       return (
         <div>
           <a href={activity._source.url} key={activity._id}>

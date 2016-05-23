@@ -139,20 +139,14 @@ router.get('/search', (req, res, next) => {
             return false;
           });
 
-          console.log(exists);
-
           if(exists === false){
             topMatchesUnique.push(element);
           }
         }
       });
 
-
-
       res.json({
-        success: topMatchesUnique,
-        QA: QAresults,
-        query : query_string
+        success: topMatchesUnique
       });
     });
 
