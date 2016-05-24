@@ -2,3 +2,101 @@
   height: 300px;
   width: 500px;
 }
+
+.imageBlock{
+  display: block;
+}
+
+.Header{
+  height: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form{
+  margin-top: 20px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0px 0px 5px 0px #555;
+  -webkit-box-shadow: 0px 0px 5px 0px #555;
+  -o-box-shadow: 0px 0px 5px 0px #555;
+  box-shadow: 0px 0px 5px 0px #555;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#555, Direction=NaN, Strength=5);
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  transition: all .4s;
+}
+
+.search-form:hover {
+  width: 300px;
+}
+
+.search-button{
+  color: #86BBC9;
+  background-color: Transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  text-shadow: 3px 3px 2px rgba(150, 150, 150, 0.4);
+  font-size: 24px;
+  float: left;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.search-button:active {
+  color: #fae596;
+}
+
+.search-form:hover .search-button{
+  -webkit-border-radius: 5px 0px 0px 5px;
+  -moz-border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+/* vertical center icon */
+.search-button i{
+  margin-top: 6px;
+  height: 20px;
+  width: 20px;
+  font-size: 14px;
+  z-index: 10;
+}
+
+.search-form input[type="text"]{
+  color: #959595;
+  height: 40px;
+  width: 0px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 0 10px;
+  border: 0;
+  float: right;
+  -webkit-border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+.search-form:hover input[type="text"]{
+  width: 240px;
+}
+// .searchInput {
+//   height: 25px;
+//   width: 275px;
+//   font-size: 14px;
+//   padding: 5px;
+//   background-color: rgba(221, 223, 212, 0.3);
+//   border: none;
+// }
