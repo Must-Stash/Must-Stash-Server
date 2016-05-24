@@ -21,7 +21,7 @@ req.addEventListener("load", function(){
         root.children.push({
           name : query,
           children : [{
-            name: "axis",
+            name: url,
             children : [{
               name : url,
               children : [{
@@ -35,6 +35,7 @@ req.addEventListener("load", function(){
 
       else {
         var index = queries.indexOf(query);
+
         root.children[index].children.push({
           name : url,
           children : [{
@@ -50,7 +51,7 @@ req.addEventListener("load", function(){
   });
 
  var margin = 20,
-      diameter = 400;
+      diameter = 1100;
 
   var color = d3.scale.linear()
       .domain([-1, 5])
@@ -60,7 +61,7 @@ req.addEventListener("load", function(){
   var pack = d3.layout.pack()
       .padding(2)
       .size([diameter - margin, diameter - margin])
-      .value(function(d) { return d.size; })
+      .value(function(d) { return d.size; });
 
   var svg = d3.select(".container").append("svg")
       .attr("width", diameter)
