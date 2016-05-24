@@ -53,9 +53,8 @@
 	    IndexRoute = __webpack_require__(168).IndexRoute,
 	    browserHistory = __webpack_require__(168).browserHistory,
 	    LandingPage = __webpack_require__(229),
-	    DataVisualPage = __webpack_require__(234),
-	    AboutPage = __webpack_require__(239),
-	    Header = __webpack_require__(233),
+	    AboutPage = __webpack_require__(241),
+	    Header = __webpack_require__(237),
 	    Nav = __webpack_require__(232);
 	
 	ReactDOM.render(React.createElement(
@@ -65,7 +64,6 @@
 	    Route,
 	    { path: '/', component: Nav },
 	    React.createElement(IndexRoute, { component: LandingPage }),
-	    React.createElement(Route, { path: '/mySearch', component: DataVisualPage }),
 	    React.createElement(Route, { path: '/about', component: AboutPage })
 	  )
 	), document.getElementById('App'));
@@ -25678,7 +25676,7 @@
 	    $ = __webpack_require__(230),
 	    List = __webpack_require__(231),
 	    Nav = __webpack_require__(232),
-	    Header = __webpack_require__(233);
+	    Header = __webpack_require__(237);
 	
 	var LandingPage = React.createClass({
 	  displayName: 'LandingPage',
@@ -35649,16 +35647,18 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var styles = __webpack_require__(233);
+	
 	var Nav = _react2.default.createClass({
 	  displayName: 'Nav',
 	
 	  render: function render() {
 	    return _react2.default.createElement(
 	      'div',
-	      { id: 'nav' },
+	      { className: 'nav' },
 	      _react2.default.createElement(
 	        'ul',
-	        null,
+	        { className: 'navList' },
 	        _react2.default.createElement(
 	          'li',
 	          null,
@@ -35672,8 +35672,8 @@
 	          'li',
 	          null,
 	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/mySearch', activeClassName: 'active' },
+	            'a',
+	            { href: '/d3.html' },
 	            'My History'
 	          )
 	        ),
@@ -35684,15 +35684,6 @@
 	            _reactRouter.Link,
 	            { to: '/about', activeClassName: 'active' },
 	            'About'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            'a',
-	            { href: '/d3.html' },
-	            'Chart Visuals'
 	          )
 	        )
 	      ),
@@ -35707,100 +35698,20 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	
-	var Header = React.createClass({
-	  displayName: 'Header',
-	
-	
-	  handleSubmit: function handleSubmit(event) {
-	    event.preventDefault();
-	    console.log('HERE', this.refs['searchBar'].value);
-	    this.props.loadDataFromServer(this.refs['searchBar'].value);
-	  },
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'Header' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        ' Must Stash '
-	      ),
-	      React.createElement(
-	        'form',
-	        { onSubmit: this.handleSubmit },
-	        React.createElement('input', {
-	          type: 'text',
-	          placeholder: 'Enter Search Items',
-	          ref: 'searchBar'
-	        }),
-	        React.createElement(
-	          'button',
-	          { id: 'searchBtn' },
-	          'Search'
-	        )
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = Header;
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var styles = __webpack_require__(235);
-	console.log(styles);
-	
-	var React = __webpack_require__(1);
-	
-	var DataVisualPage = React.createClass({
-	  displayName: 'DataVisualPage',
-	
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: styles.container },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'Data Visualization'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'DOPE A$$ VISUAL!'
-	      )
-	    );
-	  }
-	});
-	
-	module.exports = DataVisualPage;
-
-/***/ },
-/* 235 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(236);
+	var content = __webpack_require__(234);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(238)(content, {});
+	var update = __webpack_require__(236)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./datavis_styles.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./datavis_styles.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav_styles.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav_styles.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -35810,21 +35721,21 @@
 	}
 
 /***/ },
-/* 236 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(237)();
+	exports = module.exports = __webpack_require__(235)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".container {\n  background-color: yellow; }\n", ""]);
+	exports.push([module.id, ".nav {\n  margin-top: 20px;\n  height: 40px; }\n\n.navList {\n  list-style-type: none; }\n\nli {\n  display: inline;\n  padding-right: 15px; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 237 */
+/* 235 */
 /***/ function(module, exports) {
 
 	/*
@@ -35880,7 +35791,7 @@
 
 
 /***/ },
-/* 238 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -36132,7 +36043,211 @@
 
 
 /***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var styles = __webpack_require__(238);
+	var FontAwesome = __webpack_require__(240);
+	
+	var Header = React.createClass({
+	  displayName: 'Header',
+	
+	
+	  handleSubmit: function handleSubmit(event) {
+	    event.preventDefault();
+	    console.log('HERE', this.refs['searchBar'].value);
+	    this.props.loadDataFromServer(this.refs['searchBar'].value);
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'Header' },
+	      React.createElement(
+	        'div',
+	        { className: 'imageBlock' },
+	        React.createElement('img', { className: 'mainPageImage', src: '/images/large-blue.svg' })
+	      ),
+	      React.createElement(
+	        'form',
+	        { onSubmit: this.handleSubmit },
+	        React.createElement('input', {
+	          className: 'search-form',
+	          type: 'text',
+	          placeholder: 'Search Your History',
+	          ref: 'searchBar'
+	        })
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Header;
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(239);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(236)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./header_styles.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./header_styles.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
 /* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(235)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".mainPageImage {\n  height: 300px;\n  width: 500px; }\n\n.imageBlock {\n  display: block; }\n\n.Header {\n  height: auto;\n  margin-top: 50px;\n  display: flex;\n  flex-flow: column;\n  justify-content: center;\n  align-items: center; }\n\n.search-form {\n  margin-top: 25px;\n  height: 24px;\n  width: 350px;\n  text-align: center;\n  font-size: 18px;\n  padding: 10px;\n  border: none;\n  border-bottom: 3px solid;\n  border-color: #99D0E4; }\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	/**
+	 * A React component for the font-awesome icon library.
+	 *
+	 *
+	 * @param {Boolean} [border=false] Whether or not to show a border radius
+	 * @param {String} [className] An extra set of CSS classes to add to the component
+	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
+	 * @param {String} [flip=false] Flip the icon's orientation.
+	 * @param {Boolean} [inverse=false]Inverse the icon's color
+	 * @param {String} name Name of the icon to use
+	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
+	 * @param {Number} [rotate] The degress to rotate the icon by
+	 * @param {String} [size] The icon scaling size
+	 * @param {Boolean} [spin=false] Spin the icon
+	 * @param {String} [stack] Stack an icon on top of another
+	 * @module FontAwesome
+	 * @type {ReactClass}
+	 */
+	exports.default = _react2.default.createClass({
+	
+	  displayName: 'FontAwesome',
+	
+	  propTypes: {
+	    border: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    fixedWidth: _react2.default.PropTypes.bool,
+	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
+	    inverse: _react2.default.PropTypes.bool,
+	    name: _react2.default.PropTypes.string.isRequired,
+	    pulse: _react2.default.PropTypes.bool,
+	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
+	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
+	    spin: _react2.default.PropTypes.bool,
+	    stack: _react2.default.PropTypes.oneOf(['1x', '2x'])
+	  },
+	
+	  render: function render() {
+	    var _props = this.props;
+	    var border = _props.border;
+	    var fixedWidth = _props.fixedWidth;
+	    var flip = _props.flip;
+	    var inverse = _props.inverse;
+	    var name = _props.name;
+	    var pulse = _props.pulse;
+	    var rotate = _props.rotate;
+	    var size = _props.size;
+	    var spin = _props.spin;
+	    var stack = _props.stack;
+	
+	    var props = _objectWithoutProperties(_props, ['border', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack']);
+	
+	    var className = 'fa fa-' + name;
+	
+	    if (size) {
+	      className += ' fa-' + size;
+	    }
+	
+	    if (spin) {
+	      className += ' fa-spin';
+	    }
+	
+	    if (pulse) {
+	      className += ' fa-pulse';
+	    }
+	
+	    if (border) {
+	      className += ' fa-border';
+	    }
+	
+	    if (fixedWidth) {
+	      className += ' fa-fw';
+	    }
+	
+	    if (inverse) {
+	      className += ' fa-inverse';
+	    }
+	
+	    if (flip) {
+	      className += ' fa-flip-' + flip;
+	    }
+	
+	    if (rotate) {
+	      className += ' fa-rotate-' + rotate;
+	    }
+	
+	    if (stack) {
+	      className += ' fa-stack-' + stack;
+	    }
+	
+	    if (this.props.className) {
+	      className += ' ' + this.props.className;
+	    }
+	
+	    return _react2.default.createElement('span', _extends({}, props, {
+	      className: className
+	    }));
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
