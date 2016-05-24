@@ -17,15 +17,14 @@ const Header = React.createClass({
         <div className="imageBlock">
           <img className="mainPageImage" src="/images/large-blue.svg" />
         </div>
-        <form className="search-form" onSubmit={this.handleSubmit}>
-          <button className="search-button"><FontAwesome name='search' /></button>
+        <form onSubmit={this.handleSubmit}>
           <input
+            className="search-form"
             type="text"
             placeholder="Search Your History"
             ref="searchBar"
           />
         </form>
-        <FontAwesome name='search' />
       </div>
     )
   }
