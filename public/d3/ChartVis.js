@@ -3,7 +3,7 @@ req.addEventListener("load", function(){
   console.log(JSON.parse(this.response));
   var allData = JSON.parse(this.response).success;
 
-  var dataToJSON = {
+  var root = {
     children: []
   };
 
@@ -18,7 +18,7 @@ req.addEventListener("load", function(){
 
       if(queries.indexOf(query) === -1){
         queries.push(query);
-        dataToJSON.children.push({
+        root.children.push({
           name : query,
           children : [{
             name: "axis",
@@ -35,7 +35,7 @@ req.addEventListener("load", function(){
 
       else {
         var index = queries.indexOf(query);
-        dataToJSON.children[index].children.push({
+        root.children[index].children.push({
           name : url,
           children : [{
             name : url,
@@ -48,111 +48,6 @@ req.addEventListener("load", function(){
 
 
   });
-
-  console.log('dataToJSON', dataToJSON);
-  console.log('queries', queries);
-
-});
-req.open("GET", "/api/qa");
-req.send();
-
-
-var root = {
-  "children":
-  [{
-    "name": "Chicken",
-    "children":
-    [{
-      "name": "axis",
-      "children": [
-      {"name": "www.wiki.com/Chicken",
-        "children": [
-         {"name": "www.wiki.com/Chicken", "size": 416}
-        ]},
-      {"name": "www.chickenSoupForLostSouls.com",
-        "children": [
-         {"name": "www.chickenSoupForLostSouls.com", "size": 300}
-        ]},
-      {"name": "www.recipes.com/ChickenPotPieRecipe",
-        "children": [
-         {"name": "www.recipes.com/ChickenPotPieRecipe", "size": 300}
-        ]},
-      {"name": "www.nytimes.com/ChickenMassacreInTexasAustin",
-        "children": [
-         {"name": "www.nytimes.com/ChickenMassacreInTexasAustin", "size": 550}
-        ]}
-      ]
-    }]
-  },
-  {
-    "name": "Duck",
-    "children":
-    [{
-      "name": "axis",
-      "children": [
-      {"name": "www.duckduckGo.com",
-        "children": [
-         {"name": "www.duckduckGo.com", "size": 4116}
-        ]},
-      {"name": "www.mysteriousFacts.org/duckTales",
-        "children": [
-         {"name": "www.mysteriousFacts.org/duckTales", "size": 300}
-        ]},
-      {"name": "www.fancypets.io/duckling-adoption",
-        "children": [
-         {"name": "www.fancypets.io/duckling-adoption", "size": 250}
-        ]}
-      ]
-    }]
-  },
-  {
-    "name": "Cats",
-    "children":
-    [{
-      "name": "axis",
-      "children":
-      [{
-        "name": "axis",
-        "children": [
-        {"name": "www.cuteStrayAnimals.org/kittens",
-          "children": [
-           {"name": "www.cuteStrayAnimals.org/kittens", "size": 416}
-          ]},
-        {"name": "www.marvel.com/catwoman",
-          "children": [
-           {"name": "www.marvel.com/catwoman", "size": 300}
-          ]},
-        {"name": "www.whatsTheDeal/catsForSale",
-          "children": [
-           {"name": "www.whatsTheDeal/catsForSale", "size": 300}
-          ]},
-        {"name": "www.justMary.org",
-          "children": [
-           {"name": "www.justMary.org", "size": 300}
-          ]},
-        {"name": "www.uber.com/Uber_a_cat_today",
-          "children": [
-           {"name": "www.uber.com/Uber_a_cat_today", "size": 300}
-          ]},
-        {"name": "www.unhappyTruths.com/catCruelty",
-          "children": [
-           {"name": "www.unhappyTruths.com/catCruelty", "size": 300}
-          ]},
-        {"name": "www.silentRead.com/catInTheHat",
-          "children": [
-           {"name": "www.silentRead.com/catInTheHat", "size": 300}
-          ]},
-        {"name": "www.noMoreCats.co/catCostumesForSale",
-          "children": [
-           {"name": "www.noMoreCats.co/catCostumesForSale", "size": 550}
-          ]}
-        ]
-      }]
-    }]
-  }]
-};
-
-
 
  var margin = 20,
       diameter = 400;
@@ -192,19 +87,6 @@ var root = {
       .style("display", function(d) { return d.parent === root ? null : "none"; })
       .text(function(d) { return d.name; });
 
-
-  // Adding Rect to each child circle
-  var bar = svg.selectAll(".bar")
-      .data(nodes)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .style("fill", function(d) { return d.children ? color(d.depth) : null; })
-      .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
-      .style("display", function(d) { return d.parent === root ? null : "none"; })
-      .attr("width", 20)
-      .attr("x", 100)
-      .attr("height", function(d) { return 40; });
-
   var node = svg.selectAll("circle,text");
 
   d3.select(".container")
@@ -238,3 +120,106 @@ var root = {
 
 
   d3.select(self.frameElement).style("height", diameter + "px");
+
+});
+req.open("GET", "/api/qa");
+req.send();
+
+
+// var root = {
+//   "children":
+//   [{
+//     "name": "Chicken",
+//     "children":
+//     [{
+//       "name": "axis",
+//       "children": [
+//       {"name": "www.wiki.com/Chicken",
+//         "children": [
+//          {"name": "www.wiki.com/Chicken", "size": 416}
+//         ]},
+//       {"name": "www.chickenSoupForLostSouls.com",
+//         "children": [
+//          {"name": "www.chickenSoupForLostSouls.com", "size": 300}
+//         ]},
+//       {"name": "www.recipes.com/ChickenPotPieRecipe",
+//         "children": [
+//          {"name": "www.recipes.com/ChickenPotPieRecipe", "size": 300}
+//         ]},
+//       {"name": "www.nytimes.com/ChickenMassacreInTexasAustin",
+//         "children": [
+//          {"name": "www.nytimes.com/ChickenMassacreInTexasAustin", "size": 550}
+//         ]}
+//       ]
+//     }]
+//   },
+//   {
+//     "name": "Duck",
+//     "children":
+//     [{
+//       "name": "axis",
+//       "children": [
+//       {"name": "www.duckduckGo.com",
+//         "children": [
+//          {"name": "www.duckduckGo.com", "size": 4116}
+//         ]},
+//       {"name": "www.mysteriousFacts.org/duckTales",
+//         "children": [
+//          {"name": "www.mysteriousFacts.org/duckTales", "size": 300}
+//         ]},
+//       {"name": "www.fancypets.io/duckling-adoption",
+//         "children": [
+//          {"name": "www.fancypets.io/duckling-adoption", "size": 250}
+//         ]}
+//       ]
+//     }]
+//   },
+//   {
+//     "name": "Cats",
+//     "children":
+//     [{
+//       "name": "axis",
+//       "children":
+//       [{
+//         "name": "axis",
+//         "children": [
+//         {"name": "www.cuteStrayAnimals.org/kittens",
+//           "children": [
+//            {"name": "www.cuteStrayAnimals.org/kittens", "size": 416}
+//           ]},
+//         {"name": "www.marvel.com/catwoman",
+//           "children": [
+//            {"name": "www.marvel.com/catwoman", "size": 300}
+//           ]},
+//         {"name": "www.whatsTheDeal/catsForSale",
+//           "children": [
+//            {"name": "www.whatsTheDeal/catsForSale", "size": 300}
+//           ]},
+//         {"name": "www.justMary.org",
+//           "children": [
+//            {"name": "www.justMary.org", "size": 300}
+//           ]},
+//         {"name": "www.uber.com/Uber_a_cat_today",
+//           "children": [
+//            {"name": "www.uber.com/Uber_a_cat_today", "size": 300}
+//           ]},
+//         {"name": "www.unhappyTruths.com/catCruelty",
+//           "children": [
+//            {"name": "www.unhappyTruths.com/catCruelty", "size": 300}
+//           ]},
+//         {"name": "www.silentRead.com/catInTheHat",
+//           "children": [
+//            {"name": "www.silentRead.com/catInTheHat", "size": 300}
+//           ]},
+//         {"name": "www.noMoreCats.co/catCostumesForSale",
+//           "children": [
+//            {"name": "www.noMoreCats.co/catCostumesForSale", "size": 550}
+//           ]}
+//         ]
+//       }]
+//     }]
+//   }]
+// };
+
+
+
