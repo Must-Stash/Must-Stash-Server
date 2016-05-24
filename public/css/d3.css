@@ -1,14 +1,24 @@
 /* Styles go here */
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface);
+
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 30px 'Abril Fatface', cursive;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
-a {
-  color: #00B7FF;
+#backTag {
+  color: black;
+  font-size: 25px;
+  margin-right: 95%;
 }
+
 .container{
-  width: 0px;
+  margin-top: 60px;
+  color: white;
 }
 
 .node {
@@ -25,7 +35,7 @@ a {
 }
 
 .label {
-  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 12px 'Abril Fatface', cursive;
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
