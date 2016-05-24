@@ -1,6 +1,8 @@
 'use strict';
 
-const React = require('react')
+const React       = require('react')
+const styles      = require('./header_styles.scss')
+const FontAwesome = require('react-fontawesome');
 
 const Header = React.createClass({
 
@@ -12,15 +14,18 @@ const Header = React.createClass({
   render: function() {
     return (
       <div className="Header">
-        <h1> Must Stash </h1>
-        <form onSubmit={this.handleSubmit}>
+        <div className="imageBlock">
+          <img className="mainPageImage" src="/images/large-blue.svg" />
+        </div>
+        <form className="search-form" onSubmit={this.handleSubmit}>
+          <button className="search-button"><FontAwesome name='search' /></button>
           <input
             type="text"
-            placeholder="Enter Search Items"
+            placeholder="Search Your History"
             ref="searchBar"
           />
-          <button id="searchBtn">Search</button>
         </form>
+        <FontAwesome name='search' />
       </div>
     )
   }
