@@ -1,3 +1,11 @@
+var req = new XMLHttpRequest();
+req.addEventListener("load", function(){
+  console.log(JSON.parse(this.response));
+});
+req.open("GET", "/api/qa");
+req.send();
+
+
 var root = {
   "children":
   [{
