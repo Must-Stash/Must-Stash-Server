@@ -21,14 +21,8 @@ req.addEventListener("load", function(){
         root.children.push({
           name : query,
           children : [{
-            name: url,
-            children : [{
-              name : url,
-              children : [{
-                name : url,
-                size : 300
-              }]
-            }]
+            name : url,
+            size : 250
           }]
         });
       }
@@ -38,10 +32,7 @@ req.addEventListener("load", function(){
 
         root.children[index].children.push({
           name : url,
-          children : [{
-            name : url,
-            size: 300
-          }]
+          size: 250
         });
       }
 
@@ -49,6 +40,26 @@ req.addEventListener("load", function(){
 
 
   });
+
+ root.children.forEach(function(query){
+  var urls = [];
+  query.children.forEach(function(activity, index){
+    if(urls.indexOf(activity.name) === -1){
+      urls.push(activity.name);
+    }
+    else {
+      var firstIndex = urls.indexOf(activity.name);
+
+      query.children[firstIndex].size += 75;
+      query.children.splice(index, 1);
+    }
+
+
+  });
+ });
+
+ console.log(root);
+
 
  var margin = 20,
       diameter = 1100;
