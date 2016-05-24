@@ -1,6 +1,57 @@
 var req = new XMLHttpRequest();
 req.addEventListener("load", function(){
   console.log(JSON.parse(this.response));
+  var allData = JSON.parse(this.response).success;
+
+  var dataToJSON = {
+    children: []
+  };
+
+  var queries = [];
+
+  allData.forEach(function(element){
+
+    if(element.query){
+
+      var query = element.query.query_string;
+      var url = element.activity.url;
+
+      if(queries.indexOf(query) === -1){
+        queries.push(query);
+        dataToJSON.children.push({
+          name : query,
+          children : [{
+            name: "axis",
+            children : [{
+              name : url,
+              children : [{
+                name : url,
+                size : 300
+              }]
+            }]
+          }]
+        });
+      }
+
+      else {
+        var index = queries.indexOf(query);
+        dataToJSON.children[index].children.push({
+          name : url,
+          children : [{
+            name : url,
+            size: 300
+          }]
+        });
+      }
+
+    }
+
+
+  });
+
+  console.log('dataToJSON', dataToJSON);
+  console.log('queries', queries);
+
 });
 req.open("GET", "/api/qa");
 req.send();
