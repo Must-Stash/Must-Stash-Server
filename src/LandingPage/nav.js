@@ -5,7 +5,7 @@ const Nav = React.createClass({
   render: function (){
     return (
       <div id="nav">
-        <ul>
+        <ul className= "navList">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
           <li><Link to="/mySearch" activeClassName="active">My History</Link></li>
           <li><Link to="/about" activeClassName="active">About</Link></li>

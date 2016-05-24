@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react')
+const styles = require('./header_styles.scss')
 
 const Header = React.createClass({
 
@@ -12,7 +13,7 @@ const Header = React.createClass({
   render: function() {
     return (
       <div className="Header">
-        <h1> Must Stash </h1>
+        <img className="mainPageImage" src="/images/large-blue.svg" />
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
