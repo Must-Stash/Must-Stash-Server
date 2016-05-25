@@ -11,7 +11,7 @@ const LandingPage = React.createClass({
   getInitialState: function() {
       return {
         urlList: [],
-        query: ''
+        query: '',
       };
   },
 

@@ -7,11 +7,11 @@ const Nav = React.createClass({
   render: function (){
     return (
       <div className="nav">
-        <ul className= "navList">
+        <div className= "navList">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-          <li><a href="/d3.html">My History</a></li>
-          <li><Link to="/about" activeClassName="active">About</Link></li>
-        </ul>
+          <li><a href="/d3.html">Visualization</a></li>
+          <li><Link to="/about" activeClassName="active">About Us</Link></li>
+        </div>
         {this.props.children}
       </div>
     )

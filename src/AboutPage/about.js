@@ -44,6 +44,7 @@ const AboutPage = React.createClass({
 
           </div>
 
+
       </div>
 
         <Team />
