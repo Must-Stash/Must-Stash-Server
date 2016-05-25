@@ -1,6 +1,7 @@
 .mainPageImage {
   height: 350px;
   width: 550px;
+  margin-top: 80px;
 }
 
 .imageBlock{
@@ -9,7 +10,6 @@
 
 .Header{
   background-image: url('/images/white_wall_hash.png');
-  padding-top: 80px;
   font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-flow: column;
@@ -33,4 +33,26 @@
 
 *:focus{
   outline: none;
+}
+
+.searchingHeader {
+  margin-top: 40px;
+  padding-bottom: 20px;
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search-form-small {
+  height: 28px;
+  width: 200px;
+  text-align: center;
+  font-size: 18px;
+  border: none;
+  border-bottom: 4px solid;
+  border-color: #99D0E4;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
