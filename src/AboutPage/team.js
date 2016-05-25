@@ -17,14 +17,6 @@ const Team = React.createClass({
             <div className="teamMember">
               <figure>
                 <img src="http://i.imgsafe.org/6a5b608.jpg" alt="" class="img-responsive" />
-                <figcaption>
-
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
               </figure>
               <h4 className="name">Taylor Kennedy</h4>
 
@@ -33,14 +25,6 @@ const Team = React.createClass({
             <div className="teamMember">
               <figure>
                 <img src="http://i.imgsafe.org/6a5b608.jpg" alt="" class="img-responsive" />
-                <figcaption>
-
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
               </figure>
               <h4 className="name">Natalie Macias</h4>
 
@@ -49,14 +33,6 @@ const Team = React.createClass({
             <div className="teamMember">
               <figure>
                 <img src="http://i.imgsafe.org/6a5b608.jpg" alt="" class="img-responsive" />
-                <figcaption>
-
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
               </figure>
               <h4 className="name">Pamela Yang</h4>
 
@@ -66,14 +42,6 @@ const Team = React.createClass({
             <div className="teamMember">
               <figure>
                 <img src="http://i.imgsafe.org/6a5b608.jpg" alt="" class="img-responsive" />
-                <figcaption>
-
-                  <ul>
-                    <li><a href=""><i class="fa fa-facebook fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-twitter fa-2x"></i></a></li>
-                    <li><a href=""><i class="fa fa-linkedin fa-2x"></i></a></li>
-                  </ul>
-                </figcaption>
               </figure>
               <h4 className="name">Owen Yang</h4>
 

@@ -1,14 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
-
-body{
-  display:flex;
-  wrap: no-wrap;
-}
 
 
 .aboutUs{
+  margin-top: 70px;
   font-family: 'Montserrat', sans-serif;
   display:flex;
   justify-content: center;
@@ -34,17 +29,22 @@ body{
 }
 
 .aboutTitle {
-
   text-align: center;
+  font-weight: bold;
 }
 
+.features {
+  margin-left: 380px;
+  font-size: 24px;
+  font-weight: bold;
+}
 
 .aboutFeatures {
   margin-top: 50px;
 }
 
 .teamContainer {
-  margin-top: 60px;
+  margin-top: 250px;
   display:flex;
   justify-content:center;
   // background-color: yellow;
@@ -54,27 +54,23 @@ body{
 
 .photosContainer {
 
-  // background-color: red;
   display: flex;
-  height: 100px;
-  max-width: 65%;
   font-family: 'Montserrat', sans-serif;
+  max-width: 1200px;
+  margin-left: 20px;
 
   .teamMember {
-    margin-left: 3%;
-    align-items: flex-end;
+    margin-right: 50px;
+    padding: 5px;
 
     figure {
-      // background-color: blue;
       display: flex;
 
       img{
-        flex: 1 0 auto;
         height: 180px;
       }
     }
       .name {
-        // background-color: red;
         margin-left: 15%;
         align-self: flex-end;
         color:#484748;

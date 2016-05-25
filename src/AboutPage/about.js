@@ -27,7 +27,7 @@ const AboutPage = React.createClass({
 
             <div id="aboutFeatures">
 
-                Features:
+                <span className="features">Features : </span>
                 <br />
                 <p>
                    Reference your history quickly by fuzzy searching in the MustStash search bar and have the link most relevant to you returned instantly.
