@@ -1,17 +1,27 @@
 .nav{
-  margin-top: 20px;
-  height: 40px;
+  background-image: url('/public/images/white_wall_hash.png');
+  height: 100px;
+  padding-top: 20px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .navList{
   list-style-type: none;
+  text-align: center;
+  font-size: 14px;
 }
 
 li {
+  margin: 15px;
   display: inline;
-  padding-right: 15px;
 }
 
 a{
   text-decoration: none;
+}
+
+a:hover{
+  color: #99D0E4;
 }

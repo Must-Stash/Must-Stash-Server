@@ -11,8 +11,8 @@ const List = React.createClass({
 
     var arrayItems = array.map(function(activity){
       return (
-        <div>
-          <a href={activity._source.url} key={activity._id}>
+        <div key={activity._id}>
+          <a href={activity._source.url}>
             <p>{activity._source.title}</p>
           </a>
           <p>{activity._source.description}</p>
@@ -22,6 +22,7 @@ const List = React.createClass({
 
     return (
       <div className="List">
+        <h1>test</h1>
         {arrayItems}
       </div>
     )

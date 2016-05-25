@@ -1,6 +1,6 @@
 .mainPageImage {
-  height: 300px;
-  width: 500px;
+  height: 350px;
+  width: 550px;
 }
 
 .imageBlock{
@@ -9,7 +9,8 @@
 
 .Header{
   height: auto;
-  margin-top: 50px;
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 60px;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -17,14 +18,20 @@
 }
 
 .search-form {
-  margin-top: 25px;
-  height: 24px;
-  width: 350px;
+  margin-top: 35px;
+  height: 28px;
+  width: 500px;
   text-align: center;
   font-size: 18px;
   padding: 10px;
   border: none;
-  border-bottom: 3px solid;
+  border-bottom: 4px solid;
   border-color: #99D0E4;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
+*:focus{
+  outline: none;
+}
