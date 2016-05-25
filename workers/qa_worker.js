@@ -4,6 +4,7 @@ const kue = require('kue');
 const queue = kue.createQueue();
 const request = require('request');
 const url = require('url');
+const cheerio = require('cheerio');
 const elastic = require('../lib/elasticsearch');
 
 queue.process('new_qa', 5, function(job, ctx, done){
@@ -19,7 +20,17 @@ queue.process('new_qa', 5, function(job, ctx, done){
 
   request(activity.url, (error, response, body) => {
     if (!error && response.statusCode == 200) {
-      elastic.addUrls(query_string, response.request.uri.href, body)
+
+      let $ = cheerio.load(body , {
+        normalizeWhitespace: true,
+        xmlMode: true
+      });
+
+      let textTitle = $('title').text();
+      let textBody = $('body').text();
+      let textDescription = $('head').find('meta[name=description]').attr("content") || $('p').first().text();
+
+      elastic.addUrls(query_string, response.request.uri.href, textTitle, textDescription, textBody)
       .then((response) => {
         console.log("SUCCESS", activity.url);
         return done();
