@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react');
+const styles = require('./list_styles.scss');
 
 const List = React.createClass({
 

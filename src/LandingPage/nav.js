@@ -9,7 +9,7 @@ const Nav = React.createClass({
       <div className="nav">
         <ul className= "navList">
           <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-          <li><a href="/d3.html">My History</a></li>
+          <li><a href="/d3.html">Search Visual</a></li>
           <li><Link to="/about" activeClassName="active">About</Link></li>
         </ul>
         {this.props.children}
