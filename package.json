@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Must-Stash/Must-Stash-Server#readme",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "cheerio": "^0.20.0",
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4",
     "kue": "^0.11.0",
