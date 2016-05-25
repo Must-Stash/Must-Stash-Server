@@ -10,20 +10,29 @@ const List = React.createClass({
 
     console.log(this.props.hasResults);
 
-    var arrayItems = array.map(function(activity){
-      return (
-        <div key={activity._id}>
-          <a href={activity._source.url}>
-            <p>{activity._source.title}</p>
-          </a>
-          <p>{activity._source.description}</p>
-        </div>
+    var arrayItems;
+
+    if(this.props.hasResults === true){
+      arrayItems = array.map(function(activity){
+        return (
+          <div key={activity._id}>
+            <a href={activity._source.url}>
+              <p>{activity._source.title}</p>
+            </a>
+            <p>{activity._source.description}</p>
+          </div>
+        )
+      });
+    }
+
+    else {
+      arrayItems = (
+        <div className="emptylist"></div>
       )
-    });
+    }
 
     return (
       <div className="List">
-        <h1>test</h1>
         {arrayItems}
       </div>
     )

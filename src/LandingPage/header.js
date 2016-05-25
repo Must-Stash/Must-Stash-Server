@@ -50,8 +50,6 @@ const Header = React.createClass({
       )
     }
 
-
-
     return (
       <div className="Header">
         {header}
