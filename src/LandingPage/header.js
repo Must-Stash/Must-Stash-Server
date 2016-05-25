@@ -37,13 +37,13 @@ const Header = React.createClass({
 
     else {
       header = (
-        <div>
+        <div className="searchingHeader">
           <img src="./images/horizonal-blue-elephant.svg" />
           <form onSubmit={this.handleSubmit}>
             <input
               className="search-form-small"
               type="text"
-              placeholder="Search Your History"
+              placeholder="Search"
               ref="searchBar"
             />
           </form>
