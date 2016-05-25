@@ -2,7 +2,6 @@
 
 const React       = require('react')
 const styles      = require('./header_styles.scss')
-const FontAwesome = require('react-fontawesome');
 
 const Header = React.createClass({
 
