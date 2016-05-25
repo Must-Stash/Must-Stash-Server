@@ -8,12 +8,12 @@
 }
 
 .Header{
-  height: auto;
+  background-image: url('/images/white_wall_hash.png');
+  padding-top: 80px;
+  height: 100vh;
   font-family: 'Montserrat', sans-serif;
-  margin-top: 60px;
   display: flex;
   flex-flow: column;
-  justify-content: center;
   align-items: center;
 }
 
