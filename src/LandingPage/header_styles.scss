@@ -1,0 +1,30 @@
+.mainPageImage {
+  height: 300px;
+  width: 500px;
+}
+
+.imageBlock{
+  display: block;
+}
+
+.Header{
+  height: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form {
+  margin-top: 25px;
+  height: 24px;
+  width: 350px;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  border-bottom: 3px solid;
+  border-color: #99D0E4;
+}
+

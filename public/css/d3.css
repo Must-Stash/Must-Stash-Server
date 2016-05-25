@@ -1,0 +1,47 @@
+/* Styles go here */
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface);
+
+body {
+  padding: 50px;
+  font: 30px 'Abril Fatface', cursive;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+#backTag {
+  color: black;
+  font-size: 25px;
+  margin-right: 95%;
+}
+
+.container{
+  margin-top: 60px;
+  color: white;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+  fill: white;
+}
+
+.label {
+  font: 12px 'Abril Fatface', cursive;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
+}
