@@ -11,10 +11,10 @@ const List = React.createClass({
     var arrayItems = array.map(function(activity){
       return (
         <div>
-          <a href={activity._source.url} key={activity._id}>
-            <p>{activity._source.title}</p>
+          <a href={activity.url} key={activity.id}>
+            <p>{activity.title}</p>
           </a>
-          <p>{activity._source.description}</p>
+          <p>{activity.description}</p>
         </div>
       )
     });
