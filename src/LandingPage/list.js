@@ -7,7 +7,8 @@ const List = React.createClass({
 
   render: function() {
     var array = this.props.list;
-    console.log(array, 'array');
+
+    console.log(this.props.hasResults);
 
     var arrayItems = array.map(function(activity){
       return (

@@ -11,19 +11,50 @@ const Header = React.createClass({
     this.props.loadDataFromServer(this.refs['searchBar'].value)
   },
   render: function() {
+
+    var header;
+
+    console.log('this.props.hasResults', this.props.hasResults);
+
+    if(!this.props.hasResults){
+      header = (
+        <div>
+          <div className="imageBlock">
+            <img className="mainPageImage" src="/images/large-blue.svg" />
+          </div>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              className="search-form"
+              type="text"
+              placeholder="Search Your History"
+              ref="searchBar"
+            />
+          </form>
+        </div>
+      )
+    }
+
+    else {
+      header = (
+        <div>
+          <img src="./images/horizonal-blue-elephant.svg" />
+          <form onSubmit={this.handleSubmit}>
+            <input
+              className="search-form-small"
+              type="text"
+              placeholder="Search Your History"
+              ref="searchBar"
+            />
+          </form>
+        </div>
+      )
+    }
+
+
+
     return (
       <div className="Header">
-        <div className="imageBlock">
-          <img className="mainPageImage" src="/images/large-blue.svg" />
-        </div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            className="search-form"
-            type="text"
-            placeholder="Search Your History"
-            ref="searchBar"
-          />
-        </form>
+        {header}
       </div>
     )
   }
