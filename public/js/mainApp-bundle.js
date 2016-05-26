@@ -25689,9 +25689,7 @@
 	      hasResults: false
 	    };
 	  },
-	
 	  loadDataFromServer: function loadDataFromServer(query) {
-	    console.log('query', query);
 	    $.ajax({
 	      url: "/api/search?q=" + encodeURIComponent(query),
 	      method: 'GET',
@@ -25715,6 +25713,19 @@
 	  },
 	
 	  render: function render() {
+	
+	    if (window.location.hash) {
+	      var hash = window.location.hash.substring(1);
+	      var query = decodeURIComponent(hash);
+	      this.setState({
+	        query: query
+	      });
+	
+	      this.loadDataFromServer(query);
+	
+	      window.location.hash = "";
+	    }
+	
 	    return React.createElement(
 	      'div',
 	      null,
@@ -36425,7 +36436,6 @@
 	exports = module.exports = __webpack_require__(234)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);", ""]);
-	exports.push([module.id, "@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);", ""]);
 	
 	// module
 	exports.push([module.id, "@media screen and (min-width: 1200px) {\n  .aboutUs {\n    margin-top: 70px;\n    font-family: 'Montserrat', sans-serif;\n    display: flex;\n    justify-content: center;\n    width: 100%; }\n    .aboutUs .aboutPageImage {\n      margin-top: 155px;\n      height: 360px;\n      width: 600px; }\n    .aboutUs .aboutContent {\n      margin-top: 50px;\n      max-width: 41%; }\n      .aboutUs .aboutContent p {\n        word-spacing: 2px;\n        font-size: 17px;\n        margin-top: 20px; }\n    .aboutUs #aboutFeatures {\n      margin-top: 50px;\n      display: flex row;\n      text-align: center; }\n      .aboutUs #aboutFeatures .features {\n        font-size: 30px;\n        font-weight: bold; }\n  .builtBy {\n    margin-top: 100px;\n    text-align: center; }\n  .titleDiv {\n    display: flex;\n    justify-content: center; }\n    .titleDiv .aboutTitle {\n      font-weight: bold; }\n    .titleDiv .iconImage {\n      display: none; }\n  .teamContainer {\n    margin-top: 50px;\n    display: flex;\n    justify-content: center; }\n  .photosContainer {\n    justify-content: center;\n    display: flex;\n    font-family: 'Montserrat', sans-serif;\n    max-width: 1600px; }\n    .photosContainer .teamMember {\n      padding: 25px; }\n      .photosContainer .teamMember figure {\n        text-align: center; }\n        .photosContainer .teamMember figure img {\n          height: 195px; }\n        .photosContainer .teamMember figure .name {\n          color: #484748; } }\n\n@media screen and (min-width: 960px) and (max-width: 1200px) {\n  .iconImage {\n    height: 10px;\n    width: 10px; }\n  .aboutUs {\n    margin-top: 70px;\n    font-family: 'Montserrat', sans-serif;\n    display: flex;\n    justify-content: center;\n    width: 100%;\n    align-items: center; }\n    .aboutUs .aboutPageImage {\n      margin-top: 120px;\n      height: 210px;\n      width: 350px; }\n    .aboutUs .aboutContent {\n      margin-bottom: 0px;\n      max-width: 40%; }\n      .aboutUs .aboutContent p {\n        margin-top: 20px; }\n    .aboutUs #aboutFeatures {\n      margin-top: 30px;\n      display: flex row;\n      text-align: center; }\n      .aboutUs #aboutFeatures .features {\n        font-size: 30px;\n        font-weight: bold; }\n  .titleDiv {\n    display: flex;\n    justify-content: center; }\n    .titleDiv .aboutTitle {\n      font-weight: bold; }\n    .titleDiv .iconImage {\n      display: none; }\n  .builtBy {\n    margin-top: 50px;\n    text-align: center; }\n  .teamContainer {\n    margin-top: 40px;\n    display: flex;\n    justify-content: center; }\n  .photosContainer {\n    display: flex;\n    flex-flow: wrap;\n    font-family: 'Montserrat', sans-serif;\n    max-width: 700px;\n    justify-content: center; }\n    .photosContainer .teamMember {\n      padding: 30px; }\n      .photosContainer .teamMember figure img {\n        height: 200px; }\n      .photosContainer .teamMember .name {\n        text-align: center;\n        color: #484748; } }\n\n@media screen and (max-width: 960px) {\n  .aboutUs {\n    margin-top: 120px;\n    font-family: 'Montserrat', sans-serif;\n    display: flex;\n    justify-content: center;\n    width: 100%;\n    align-items: center; }\n    .aboutUs .aboutPageImage {\n      display: none; }\n    .aboutUs .aboutContent {\n      margin-bottom: 0px;\n      max-width: 40%; }\n      .aboutUs .aboutContent p {\n        margin-top: 20px; }\n    .aboutUs #aboutFeatures {\n      margin-top: 30px;\n      text-align: center; }\n      .aboutUs #aboutFeatures .features {\n        font-size: 20px;\n        font-weight: bold; }\n  .titleDiv {\n    display: flex;\n    justify-content: center;\n    margin-bottom: 30px; }\n    .titleDiv .aboutTitle {\n      font-size: 25px;\n      font-weight: bold; }\n    .titleDiv .iconImage {\n      height: 60px;\n      width: 100px; }\n  .builtBy {\n    margin-top: 60px;\n    font-size: 20px;\n    text-align: center; }\n  .teamContainer {\n    margin-top: 35px;\n    display: flex;\n    justify-content: center; }\n  .photosContainer {\n    display: flex;\n    font-family: 'Montserrat', sans-serif;\n    max-width: 300px;\n    margin-left: 20px;\n    flex-flow: wrap;\n    justify-content: center; }\n    .photosContainer .teamMember {\n      padding: 15px; }\n      .photosContainer .teamMember figure img {\n        height: 180px; }\n      .photosContainer .teamMember .name {\n        text-align: center;\n        color: #484748; } }\n", ""]);
