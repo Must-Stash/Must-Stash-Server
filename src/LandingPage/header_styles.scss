@@ -23,12 +23,9 @@
   text-align: center;
   font-size: 18px;
   padding: 10px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset, 0 1px 1px rgba(0,0,0,0.05) inset;
+  border-radius: 3px;
   border: none;
-  border-bottom: 4px solid;
-  border-color: #99D0E4;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
 }
 
 *:focus{
@@ -45,14 +42,11 @@
 }
 
 .search-form-small {
-  height: 28px;
-  width: 200px;
+  height: 35px;
+  width: 300px;
   text-align: center;
   font-size: 18px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset, 0 1px 1px rgba(0,0,0,0.05) inset;
+  border-radius: 3px;
   border: none;
-  border-bottom: 4px solid;
-  border-color: #99D0E4;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
 }

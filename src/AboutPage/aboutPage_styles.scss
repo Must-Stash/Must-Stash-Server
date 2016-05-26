@@ -1,14 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 $break-large: 1200px;
 $break-medium: 960px;
 
-
-
-
-
 @media screen and (min-width: $break-large) {
-
 
 .aboutUs{
   margin-top: 70px;
@@ -17,13 +10,11 @@ $break-medium: 960px;
   justify-content: center;
   width: 100%;
 
-
     .aboutPageImage {
       margin-top: 155px;
       height: 360px;
       width: 600px;
     }
-
 
     .aboutContent {
       margin-top: 50px;

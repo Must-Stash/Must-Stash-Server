@@ -1,6 +1,6 @@
 .nav{
   background-image: url('/images/white_wall_hash.png');
-  height: 100px;
+  height: 134px;
   padding-top: 30px;
   align-items: center;
   justify-content: center;
@@ -23,5 +23,6 @@ a{
 }
 
 a:hover{
+  text-decoration: none;
   color: #99D0E4;
 }
