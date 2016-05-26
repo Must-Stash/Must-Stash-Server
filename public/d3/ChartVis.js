@@ -59,7 +59,7 @@ req.addEventListener("load", function(){
 
 
  var margin = 20,
-      diameter = 1100;
+      diameter = 800;
 
   var color = d3.scale.linear()
       .domain([-1, 3])

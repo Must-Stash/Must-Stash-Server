@@ -11,7 +11,8 @@ const LandingPage = React.createClass({
   getInitialState: function() {
       return {
         urlList: [],
-        query: ''
+        query: '',
+        hasResults: false
       };
   },
 
@@ -22,10 +23,16 @@ const LandingPage = React.createClass({
       method: 'GET',
       cache: false,
       success: function(data) {
-        console.log('data', data);
         this.setState({
           urlList: data.success
         });
+        if(data.success.length > 0){
+          this.setState({
+            hasResults: true
+          });
+          console.log('this.state.hasResults', this.state.hasResults);
+        }
+        console.log('data', data);
       }.bind(this),
       error: function(xhr, status, err) {
         console.error("Error");
@@ -36,8 +43,8 @@ const LandingPage = React.createClass({
   render: function() {
     return (
       <div>
-        <Header loadDataFromServer={this.loadDataFromServer}/>
-        <List list={this.state.urlList} />
+        <Header hasResults={this.state.hasResults} loadDataFromServer={this.loadDataFromServer}/>
+        <List hasResults={this.state.hasResults} list={this.state.urlList} />
       </div>
     )
   }
