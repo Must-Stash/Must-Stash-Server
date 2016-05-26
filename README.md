@@ -12,7 +12,7 @@ MustStash is a google [chrome extension](https://github.com/Must-Stash/Must-Stas
 ```sh
 $ git clone git@github.com:Must-Stash/Must-Stash-Server.git
 $ cd Must-Stash-Server
-$ npm install
+$ npm install
 $ webpack
 $ node workers/qa_worker
 $ npm start
