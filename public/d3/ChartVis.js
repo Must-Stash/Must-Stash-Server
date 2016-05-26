@@ -1,3 +1,4 @@
+
 var req = new XMLHttpRequest();
 req.addEventListener("load", function(){
   var allData = JSON.parse(this.response).success;
@@ -14,6 +15,12 @@ req.addEventListener("load", function(){
 
       var query = element.query.query_string;
       var url = element.activity.url;
+
+      if(url.length > 45){
+        url = url.substring(0, 45) + "...";
+        console.log('url', url);
+        console.log('url', url.length);
+      }
 
       if(queries.indexOf(query) === -1){
         queries.push(query);
@@ -137,5 +144,3 @@ req.addEventListener("load", function(){
 });
 req.open("GET", "/api/qa");
 req.send();
-
-
