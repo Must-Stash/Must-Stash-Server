@@ -94,7 +94,7 @@ req.addEventListener("load", function(){
       .data(nodes)
     .enter().append("text")
       .attr("class", "label")
-      .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
+      .style("fill", '#FFFFFF')
       .style("display", function(d) { return d.parent === root ? null : "none"; })
       .text(function(d) { return d.name; });
 
@@ -120,7 +120,7 @@ req.addEventListener("load", function(){
 
     transition.selectAll("text")
       .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-        .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
+      .style("fill", '#FFFFFF')
         .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
         .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
   }
