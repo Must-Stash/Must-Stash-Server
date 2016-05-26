@@ -1,3 +1,4 @@
+<img src="https://cdn.rawgit.com/Must-Stash/Must-Stash-Server/master/public/images/horizonal-blue-elephant.svg" width= 100%>
 ## What is MustStash?
 MustStash is a google [chrome extension](https://github.com/Must-Stash/Must-Stash-Extension) that preserves and analyzes your query terms and results as you browse. On click, the MustStash will display the site link most relevant to you and your search input on the google search bar.
 
