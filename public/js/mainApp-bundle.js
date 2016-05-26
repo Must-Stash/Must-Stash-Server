@@ -53,7 +53,8 @@
 	    IndexRoute = __webpack_require__(168).IndexRoute,
 	    browserHistory = __webpack_require__(168).browserHistory,
 	    LandingPage = __webpack_require__(229),
-	    AboutPage = __webpack_require__(242),
+	    AboutPage = __webpack_require__(243),
+	    Team = __webpack_require__(246),
 	    Header = __webpack_require__(239),
 	    Nav = __webpack_require__(236);
 	
@@ -25684,7 +25685,8 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      urlList: [],
-	      query: ''
+	      query: '',
+	      hasResults: false
 	    };
 	  },
 	
@@ -25695,10 +25697,16 @@
 	      method: 'GET',
 	      cache: false,
 	      success: function (data) {
-	        console.log('data', data);
 	        this.setState({
 	          urlList: data.success
 	        });
+	        if (data.success.length > 0) {
+	          this.setState({
+	            hasResults: true
+	          });
+	          console.log('this.state.hasResults', this.state.hasResults);
+	        }
+	        console.log('data', data);
 	      }.bind(this),
 	      error: function (xhr, status, err) {
 	        console.error("Error");
@@ -25710,8 +25718,8 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      React.createElement(Header, { loadDataFromServer: this.loadDataFromServer }),
-	      React.createElement(List, { list: this.state.urlList })
+	      React.createElement(Header, { hasResults: this.state.hasResults, loadDataFromServer: this.loadDataFromServer }),
+	      React.createElement(List, { hasResults: this.state.hasResults, list: this.state.urlList })
 	    );
 	  }
 	});
@@ -35581,39 +35589,39 @@
 	
 	  render: function render() {
 	    var array = this.props.list;
-	    console.log(array, 'array');
 	
-	    var arrayItems = array.map(function (activity) {
-	      return React.createElement(
-	        'div',
-	        { key: activity._id },
-	        React.createElement(
-	          'a',
-	          { href: activity._source.url },
+	    console.log(this.props.hasResults);
+	
+	    if (this.props.hasResults === true) {
+	      var arrayItems = array.map(function (activity) {
+	        return React.createElement(
+	          'div',
+	          { key: activity.id },
+	          React.createElement(
+	            'a',
+	            { href: activity.url },
+	            React.createElement(
+	              'p',
+	              null,
+	              activity.title
+	            )
+	          ),
 	          React.createElement(
 	            'p',
 	            null,
-	            activity._source.title
+	            activity.description
 	          )
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          activity._source.description
-	        )
-	      );
-	    });
+	        );
+	      });
 	
-	    return React.createElement(
-	      'div',
-	      { className: 'List' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        'test'
-	      ),
-	      arrayItems
-	    );
+	      return React.createElement(
+	        'div',
+	        { className: 'List' },
+	        arrayItems
+	      );
+	    } else {
+	      return React.createElement('div', { className: 'emptylist' });
+	    }
 	  }
 	});
 	
@@ -35654,7 +35662,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".List {\n  background-color: yellow;\n  margin-left: 5%;\n  margin-right: 5%;\n  word-wrap: break-word; }\n", ""]);
+	exports.push([module.id, ".List {\n  margin-top: 5%;\n  margin-left: 15%;\n  margin-right: 15%;\n  word-wrap: break-word; }\n\n.emptylist {\n  background-image: url(\"/images/white_wall_hash.png\");\n  margin-right: 5%;\n  word-wrap: break-word;\n  height: 500px;\n  width: 100%; }\n", ""]);
 	
 	// exports
 
@@ -35997,8 +36005,8 @@
 	          'li',
 	          null,
 	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { to: '/', activeClassName: 'active' },
+	            'a',
+	            { href: '/', activeClassName: 'active' },
 	            'Home'
 	          )
 	        ),
@@ -36076,6 +36084,7 @@
 	
 	var React = __webpack_require__(1);
 	var styles = __webpack_require__(240);
+	var FontAwesome = __webpack_require__(242);
 	
 	var Header = React.createClass({
 	  displayName: 'Header',
@@ -36087,24 +36096,55 @@
 	    this.props.loadDataFromServer(this.refs['searchBar'].value);
 	  },
 	  render: function render() {
+	
+	    var header;
+	
+	    console.log('this.props.hasResults', this.props.hasResults);
+	
+	    if (!this.props.hasResults) {
+	      header = React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'div',
+	          { className: 'imageBlock' },
+	          React.createElement('img', { className: 'mainPageImage', src: '/images/large-blue.svg' })
+	        ),
+	        React.createElement(
+	          'form',
+	          { onSubmit: this.handleSubmit },
+	          React.createElement('input', {
+	            className: 'search-form',
+	            type: 'text',
+	            placeholder: 'Search Your History',
+	            ref: 'searchBar',
+	            autoFocus: true
+	          })
+	        )
+	      );
+	    } else {
+	      header = React.createElement(
+	        'div',
+	        { className: 'searchingHeader' },
+	        React.createElement('img', { src: './images/horizonal-blue-elephant.svg' }),
+	        React.createElement(
+	          'form',
+	          { onSubmit: this.handleSubmit },
+	          React.createElement('input', {
+	            className: 'search-form-small',
+	            type: 'text',
+	            placeholder: 'Search',
+	            ref: 'searchBar',
+	            autoFocus: true
+	          })
+	        )
+	      );
+	    }
+	
 	    return React.createElement(
 	      'div',
 	      { className: 'Header' },
-	      React.createElement(
-	        'div',
-	        { className: 'imageBlock' },
-	        React.createElement('img', { className: 'mainPageImage', src: '/images/large-blue.svg' })
-	      ),
-	      React.createElement(
-	        'form',
-	        { onSubmit: this.handleSubmit },
-	        React.createElement('input', {
-	          className: 'search-form',
-	          type: 'text',
-	          placeholder: 'Search Your History',
-	          ref: 'searchBar'
-	        })
-	      )
+	      header
 	    );
 	  }
 	});
@@ -36146,7 +36186,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".mainPageImage {\n  height: 350px;\n  width: 550px; }\n\n.imageBlock {\n  display: block; }\n\n.Header {\n  background-image: url(\"/images/white_wall_hash.png\");\n  padding-top: 80px;\n  height: 100vh;\n  font-family: 'Montserrat', sans-serif;\n  display: flex;\n  flex-flow: column;\n  align-items: center; }\n\n.search-form {\n  margin-top: 35px;\n  height: 28px;\n  width: 500px;\n  text-align: center;\n  font-size: 18px;\n  padding: 10px;\n  border: none;\n  border-bottom: 4px solid;\n  border-color: #99D0E4;\n  -webkit-box-shadow: 0 10px 6px -6px #777;\n  -moz-box-shadow: 0 10px 6px -6px #777;\n  box-shadow: 0 10px 6px -6px #777; }\n\n*:focus {\n  outline: none; }\n", ""]);
+	exports.push([module.id, ".mainPageImage {\n  height: 350px;\n  width: 550px;\n  margin-top: 80px; }\n\n.imageBlock {\n  display: block; }\n\n.Header {\n  background-image: url(\"/images/white_wall_hash.png\");\n  font-family: 'Montserrat', sans-serif;\n  display: flex;\n  flex-flow: column;\n  align-items: center; }\n\n.search-form {\n  margin-top: 35px;\n  height: 28px;\n  width: 100%;\n  text-align: center;\n  font-size: 18px;\n  padding: 10px;\n  border: none;\n  border-bottom: 4px solid;\n  border-color: #99D0E4;\n  -webkit-box-shadow: 0 10px 6px -6px #777;\n  -moz-box-shadow: 0 10px 6px -6px #777;\n  box-shadow: 0 10px 6px -6px #777; }\n\n*:focus {\n  outline: none; }\n\n.searchingHeader {\n  margin-top: 40px;\n  padding-bottom: 20px;\n  width: 70%;\n  display: flex;\n  justify-content: space-around;\n  align-items: center; }\n\n.search-form-small {\n  height: 28px;\n  width: 200px;\n  text-align: center;\n  font-size: 18px;\n  border: none;\n  border-bottom: 4px solid;\n  border-color: #99D0E4;\n  -webkit-box-shadow: 0 10px 6px -6px #777;\n  -moz-box-shadow: 0 10px 6px -6px #777;\n  box-shadow: 0 10px 6px -6px #777; }\n", ""]);
 	
 	// exports
 
@@ -36157,26 +36197,195 @@
 
 	'use strict';
 	
-	var React = __webpack_require__(1);
-	var styles = __webpack_require__(243);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+	
+	/**
+	 * A React component for the font-awesome icon library.
+	 *
+	 *
+	 * @param {Boolean} [border=false] Whether or not to show a border radius
+	 * @param {String} [className] An extra set of CSS classes to add to the component
+	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
+	 * @param {String} [flip=false] Flip the icon's orientation.
+	 * @param {Boolean} [inverse=false]Inverse the icon's color
+	 * @param {String} name Name of the icon to use
+	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
+	 * @param {Number} [rotate] The degress to rotate the icon by
+	 * @param {String} [size] The icon scaling size
+	 * @param {Boolean} [spin=false] Spin the icon
+	 * @param {String} [stack] Stack an icon on top of another
+	 * @module FontAwesome
+	 * @type {ReactClass}
+	 */
+	exports.default = _react2.default.createClass({
+	
+	  displayName: 'FontAwesome',
+	
+	  propTypes: {
+	    border: _react2.default.PropTypes.bool,
+	    className: _react2.default.PropTypes.string,
+	    fixedWidth: _react2.default.PropTypes.bool,
+	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
+	    inverse: _react2.default.PropTypes.bool,
+	    name: _react2.default.PropTypes.string.isRequired,
+	    pulse: _react2.default.PropTypes.bool,
+	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
+	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
+	    spin: _react2.default.PropTypes.bool,
+	    stack: _react2.default.PropTypes.oneOf(['1x', '2x'])
+	  },
+	
+	  render: function render() {
+	    var _props = this.props;
+	    var border = _props.border;
+	    var fixedWidth = _props.fixedWidth;
+	    var flip = _props.flip;
+	    var inverse = _props.inverse;
+	    var name = _props.name;
+	    var pulse = _props.pulse;
+	    var rotate = _props.rotate;
+	    var size = _props.size;
+	    var spin = _props.spin;
+	    var stack = _props.stack;
+	
+	    var props = _objectWithoutProperties(_props, ['border', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack']);
+	
+	    var className = 'fa fa-' + name;
+	
+	    if (size) {
+	      className += ' fa-' + size;
+	    }
+	
+	    if (spin) {
+	      className += ' fa-spin';
+	    }
+	
+	    if (pulse) {
+	      className += ' fa-pulse';
+	    }
+	
+	    if (border) {
+	      className += ' fa-border';
+	    }
+	
+	    if (fixedWidth) {
+	      className += ' fa-fw';
+	    }
+	
+	    if (inverse) {
+	      className += ' fa-inverse';
+	    }
+	
+	    if (flip) {
+	      className += ' fa-flip-' + flip;
+	    }
+	
+	    if (rotate) {
+	      className += ' fa-rotate-' + rotate;
+	    }
+	
+	    if (stack) {
+	      className += ' fa-stack-' + stack;
+	    }
+	
+	    if (this.props.className) {
+	      className += ' ' + this.props.className;
+	    }
+	
+	    return _react2.default.createElement('span', _extends({}, props, {
+	      className: className
+	    }));
+	  }
+	});
+	module.exports = exports['default'];
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	var styles = __webpack_require__(244);
+	var Team = __webpack_require__(246);
 	var AboutPage = React.createClass({
 	  displayName: 'AboutPage',
 	
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { className: 'AboutPage' },
+	      { className: 'AboutContainer' },
 	      React.createElement(
-	        'h1',
-	        null,
-	        'About Must-Stash'
+	        'div',
+	        { className: 'aboutUs' },
+	        React.createElement('img', { className: 'aboutPageImage', src: '/images/large-blue.svg' }),
+	        React.createElement(
+	          'div',
+	          { className: 'aboutContent' },
+	          React.createElement(
+	            'div',
+	            { className: 'titleDiv' },
+	            React.createElement('img', { className: 'iconImage', src: '/images/large-blue.svg' }),
+	            React.createElement(
+	              'h1',
+	              { className: 'aboutTitle' },
+	              'About Must-Stash'
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { className: 'aboutText' },
+	            React.createElement(
+	              'p',
+	              null,
+	              'Have you ever wanted to revisit a site only to find that you have forgotten the exact google terms that took you there? Do you have bookmarks that don\'t help when you just need a quick pick-me-up? Super charge your Google-foo with MustStash and navigate your browsing history with ease.'
+	            )
+	          ),
+	          React.createElement(
+	            'div',
+	            { id: 'aboutFeatures' },
+	            React.createElement(
+	              'span',
+	              { className: 'features' },
+	              'Features : '
+	            )
+	          ),
+	          React.createElement('br', null),
+	          React.createElement(
+	            'p',
+	            null,
+	            'Reference your history quickly by fuzzy searching in the MustStash search bar and have the link most relevant to you returned instantly.'
+	          ),
+	          React.createElement(
+	            'p',
+	            null,
+	            'View on an interactive packing graph your most searched terms and the related links during that browsing window.'
+	          ),
+	          React.createElement(
+	            'p',
+	            null,
+	            'Have the option to determine the server you want your history to be saved to and keep it secure.'
+	          )
+	        )
 	      ),
 	      React.createElement(
-	        'p',
-	        { id: 'aboutMessage' },
-	        'Bacon ipsum dolor amet kielbasa shank sausage ham hock, frankfurter tail chicken jerky beef ribs short loin pancetta ham cow fatback kevin. Pork chop jerky salami chicken meatball turducken. Picanha shankle landjaeger, chicken turkey chuck rump spare ribs capicola tri-tip t-bone. Fatback tail turkey, tongue ribeye jowl doner tri-tip shankle corned beef beef short loin cupim rump. Prosciutto venison pork belly leberkas rump. Pancetta ham hock strip steak turducken. Shank sausage tail doner swine, t-bone filet mignon porchetta pork belly shoulder corned beef chicken jowl. Brisket salami pork loin fatback pork. Spare ribs pork loin fatback doner meatloaf venison jowl cupim strip steak ribeye picanha tail meatball. Meatball ball tip spare ribs, capicola cupim sirloin ham hock pork belly venison. Capicola pork loin hamburger turkey strip steak pork belly fatback turducken brisket pastrami meatball beef ribs ham hock shankle. Turkey ball tip picanha pork chop shankle short loin frankfurter porchetta ground round beef ribs prosciutto pastrami.'
-	      )
+	        'h2',
+	        { className: 'builtBy' },
+	        'Built By '
+	      ),
+	      React.createElement(Team, null)
 	    );
 	  }
 	});
@@ -36184,13 +36393,13 @@
 	module.exports = AboutPage;
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(244);
+	var content = __webpack_require__(245);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(235)(content, {});
@@ -36199,8 +36408,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./about_styles.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./about_styles.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./aboutPage_styles.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./aboutPage_styles.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -36210,18 +36419,100 @@
 	}
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(234)();
 	// imports
-	
+	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);", ""]);
+	exports.push([module.id, "@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);", ""]);
 	
 	// module
-	exports.push([module.id, ".AboutPage {\n  background-color: yellow; }\n", ""]);
+	exports.push([module.id, "@media screen and (min-width: 1200px) {\n  .aboutUs {\n    margin-top: 70px;\n    font-family: 'Montserrat', sans-serif;\n    display: flex;\n    justify-content: center;\n    width: 100%; }\n    .aboutUs .aboutPageImage {\n      margin-top: 155px;\n      height: 360px;\n      width: 600px; }\n    .aboutUs .aboutContent {\n      margin-top: 50px;\n      max-width: 41%; }\n      .aboutUs .aboutContent p {\n        word-spacing: 2px;\n        font-size: 17px;\n        margin-top: 20px; }\n    .aboutUs #aboutFeatures {\n      margin-top: 50px;\n      display: flex row;\n      text-align: center; }\n      .aboutUs #aboutFeatures .features {\n        font-size: 30px;\n        font-weight: bold; }\n  .builtBy {\n    margin-top: 100px;\n    text-align: center; }\n  .titleDiv {\n    display: flex;\n    justify-content: center; }\n    .titleDiv .aboutTitle {\n      font-weight: bold; }\n    .titleDiv .iconImage {\n      display: none; }\n  .teamContainer {\n    margin-top: 50px;\n    display: flex;\n    justify-content: center; }\n  .photosContainer {\n    justify-content: center;\n    display: flex;\n    font-family: 'Montserrat', sans-serif;\n    max-width: 1600px; }\n    .photosContainer .teamMember {\n      padding: 25px; }\n      .photosContainer .teamMember figure {\n        text-align: center; }\n        .photosContainer .teamMember figure img {\n          height: 195px; }\n        .photosContainer .teamMember figure .name {\n          color: #484748; } }\n\n@media screen and (min-width: 960px) and (max-width: 1200px) {\n  .iconImage {\n    height: 10px;\n    width: 10px; }\n  .aboutUs {\n    margin-top: 70px;\n    font-family: 'Montserrat', sans-serif;\n    display: flex;\n    justify-content: center;\n    width: 100%;\n    align-items: center; }\n    .aboutUs .aboutPageImage {\n      margin-top: 120px;\n      height: 210px;\n      width: 350px; }\n    .aboutUs .aboutContent {\n      margin-bottom: 0px;\n      max-width: 40%; }\n      .aboutUs .aboutContent p {\n        margin-top: 20px; }\n    .aboutUs #aboutFeatures {\n      margin-top: 30px;\n      display: flex row;\n      text-align: center; }\n      .aboutUs #aboutFeatures .features {\n        font-size: 30px;\n        font-weight: bold; }\n  .titleDiv {\n    display: flex;\n    justify-content: center; }\n    .titleDiv .aboutTitle {\n      font-weight: bold; }\n    .titleDiv .iconImage {\n      display: none; }\n  .builtBy {\n    margin-top: 50px;\n    text-align: center; }\n  .teamContainer {\n    margin-top: 40px;\n    display: flex;\n    justify-content: center; }\n  .photosContainer {\n    display: flex;\n    flex-flow: wrap;\n    font-family: 'Montserrat', sans-serif;\n    max-width: 700px;\n    justify-content: center; }\n    .photosContainer .teamMember {\n      padding: 30px; }\n      .photosContainer .teamMember figure img {\n        height: 200px; }\n      .photosContainer .teamMember .name {\n        text-align: center;\n        color: #484748; } }\n\n@media screen and (max-width: 960px) {\n  .aboutUs {\n    margin-top: 120px;\n    font-family: 'Montserrat', sans-serif;\n    display: flex;\n    justify-content: center;\n    width: 100%;\n    align-items: center; }\n    .aboutUs .aboutPageImage {\n      display: none; }\n    .aboutUs .aboutContent {\n      margin-bottom: 0px;\n      max-width: 40%; }\n      .aboutUs .aboutContent p {\n        margin-top: 20px; }\n    .aboutUs #aboutFeatures {\n      margin-top: 30px;\n      text-align: center; }\n      .aboutUs #aboutFeatures .features {\n        font-size: 20px;\n        font-weight: bold; }\n  .titleDiv {\n    display: flex;\n    justify-content: center;\n    margin-bottom: 30px; }\n    .titleDiv .aboutTitle {\n      font-size: 25px;\n      font-weight: bold; }\n    .titleDiv .iconImage {\n      height: 60px;\n      width: 100px; }\n  .builtBy {\n    margin-top: 60px;\n    font-size: 20px;\n    text-align: center; }\n  .teamContainer {\n    margin-top: 35px;\n    display: flex;\n    justify-content: center; }\n  .photosContainer {\n    display: flex;\n    font-family: 'Montserrat', sans-serif;\n    max-width: 300px;\n    margin-left: 20px;\n    flex-flow: wrap;\n    justify-content: center; }\n    .photosContainer .teamMember {\n      padding: 15px; }\n      .photosContainer .teamMember figure img {\n        height: 180px; }\n      .photosContainer .teamMember .name {\n        text-align: center;\n        color: #484748; } }\n", ""]);
 	
 	// exports
 
+
+/***/ },
+/* 246 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var React = __webpack_require__(1);
+	
+	var Team = React.createClass({
+	  displayName: 'Team',
+	
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'teamContainer' },
+	      React.createElement(
+	        'div',
+	        { className: 'photosContainer' },
+	        React.createElement(
+	          'div',
+	          { className: 'teamMember' },
+	          React.createElement(
+	            'figure',
+	            null,
+	            React.createElement('img', { src: '/images/owen.JPG', alt: '', 'class': 'img-responsive' }),
+	            React.createElement(
+	              'h4',
+	              { className: 'name' },
+	              'Owen Yang'
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'teamMember' },
+	          React.createElement(
+	            'figure',
+	            null,
+	            React.createElement('img', { src: '/images/natty.JPG', alt: '', 'class': 'img-responsive' }),
+	            React.createElement(
+	              'h4',
+	              { className: 'name' },
+	              'Natalie Macias'
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'teamMember' },
+	          React.createElement(
+	            'figure',
+	            null,
+	            React.createElement('img', { src: '/images/pammy.JPG', alt: '', 'class': 'img-responsive' }),
+	            React.createElement(
+	              'h4',
+	              { className: 'name' },
+	              'Pamela Yang'
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'teamMember' },
+	          React.createElement(
+	            'figure',
+	            null,
+	            React.createElement('img', { src: '/images/taytay.JPG', alt: '', 'class': 'img-responsive' }),
+	            React.createElement(
+	              'h4',
+	              { className: 'name' },
+	              'Taylor Kennedy'
+	            )
+	          )
+	        )
+	      )
+	    );
+	  }
+	});
+	
+	module.exports = Team;
 
 /***/ }
 /******/ ]);
