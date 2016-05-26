@@ -1,3 +1,4 @@
+
 var req = new XMLHttpRequest();
 req.addEventListener("load", function(){
   var allData = JSON.parse(this.response).success;
@@ -139,3 +140,20 @@ req.open("GET", "/api/qa");
 req.send();
 
 
+// .node:hover {
+//   stroke: #2AA6C0;
+//   stroke-width: 1px;
+//   stroke-dasharray: 5, 5;
+// }
+
+// .node--leaf {
+//   fill: white;
+// }
+
+// .label {
+//   font-size: 12px;
+//   font-weight: bold;
+//   font-family: 'Open Sans', sans-serif;
+//   text-shadow: 1px 1px #492436;
+//   text-anchor: middle;
+// }
