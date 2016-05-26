@@ -62,8 +62,8 @@ req.addEventListener("load", function(){
       diameter = 800;
 
   var color = d3.scale.linear()
-      .domain([-1, 3])
-      .range(["#69D2E7", "#012D44"])
+      .domain([0, 6])
+      .range(["#CEEEFA", "#005283"])
       .interpolate(d3.interpolateHcl);
 
   var pack = d3.layout.pack()
@@ -85,7 +85,7 @@ req.addEventListener("load", function(){
       .data(nodes)
     .enter().append("circle")
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-      .style("fill", function(d) { return d.children ? color(d.depth) : "#FAFBE3"; })
+      .style("fill", function(d) { return d.children ? color(d.depth) : "#51A4BB"; })
       .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
 
 
@@ -103,7 +103,7 @@ req.addEventListener("load", function(){
   var node = svg.selectAll("circle,text");
 
   d3.select(".container")
-      .style("background", color(-9))
+      .style("background", color(-6))
       .on("click", function() { zoom(root); });
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
