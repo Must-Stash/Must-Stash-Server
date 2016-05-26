@@ -8,7 +8,7 @@ const Nav = React.createClass({
     return (
       <div className="nav">
         <div className= "navList">
-          <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+          <li><a href="/" activeClassName="active">Home</a></li>
           <li><a href="/d3.html">Visualization</a></li>
           <li><Link to="/about" activeClassName="active">About Us</Link></li>
         </div>

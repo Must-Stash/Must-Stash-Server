@@ -1,0 +1,321 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+$break-large: 1200px;
+$break-medium: 960px;
+
+
+
+
+
+@media screen and (min-width: $break-large) {
+
+
+.aboutUs{
+  margin-top: 70px;
+  font-family: 'Montserrat', sans-serif;
+  display:flex;
+  justify-content: center;
+  width: 100%;
+
+
+    .aboutPageImage {
+      margin-top: 155px;
+      height: 360px;
+      width: 600px;
+    }
+
+
+    .aboutContent {
+      margin-top: 50px;
+      max-width: 41%;
+
+      p {
+        word-spacing: 2px;
+        font-size: 17px;
+        margin-top: 20px;
+      }
+    }
+
+    #aboutFeatures {
+      margin-top: 50px;
+      display:flex row;
+      text-align: center;
+
+      .features {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+    }
+
+}
+
+.builtBy {
+  margin-top: 100px;
+  text-align: center;
+}
+
+
+.titleDiv {
+  display: flex;
+  justify-content: center;
+
+  .aboutTitle {
+    font-weight: bold;
+  }
+  .iconImage {
+    display: none;
+  }
+
+
+}
+
+
+.teamContainer {
+  margin-top: 50px;
+  display:flex;
+  justify-content:center;
+}
+
+
+.photosContainer {
+  justify-content: center;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 1600px;
+
+  .teamMember {
+    padding: 25px;
+
+    figure {
+      text-align: center;
+
+      img{
+        height: 195px;
+      }
+      .name {
+        color:#484748;
+      }
+    }
+
+
+  }
+
+}
+
+}
+
+@media screen and (min-width: $break-medium) and (max-width: $break-large) {
+
+  .iconImage {
+  height: 10px;
+  width: 10px;
+}
+
+  .aboutUs{
+    margin-top: 70px;
+    font-family: 'Montserrat', sans-serif;
+    display:flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+
+
+      .aboutPageImage {
+        margin-top: 120px;
+        height: 210px;
+        width: 350px;
+      }
+
+
+      .aboutContent {
+        margin-bottom: 0px;
+        max-width: 40%;
+
+        p {
+          margin-top: 20px;
+        }
+      }
+
+      #aboutFeatures {
+        margin-top: 30px;
+        display:flex row;
+        text-align: center;
+
+        .features {
+          font-size: 30px;
+          font-weight: bold;
+        }
+
+      }
+
+
+
+  }
+
+  .titleDiv {
+    display: flex;
+    justify-content: center;
+
+    .aboutTitle {
+      font-weight: bold;
+    }
+    .iconImage {
+      display: none;
+    }
+
+
+  }
+
+  .builtBy {
+  margin-top: 50px;
+  text-align: center;
+  }
+
+  .teamContainer {
+    margin-top: 40px;
+    display:flex;
+    justify-content:center;
+  }
+
+
+  .photosContainer {
+
+    display: flex;
+    flex-flow: wrap;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 700px;
+    justify-content:center;
+
+    .teamMember {
+      padding: 30px;
+
+      figure {
+
+        img{
+          height: 200px;
+        }
+      }
+        .name {
+          text-align: center;
+          color:#484748;
+        }
+
+
+    }
+
+  }
+
+
+
+}
+
+
+
+
+@media screen and (max-width: $break-medium) {
+
+
+.aboutUs{
+  margin-top: 120px;
+  font-family: 'Montserrat', sans-serif;
+  display:flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  // background-color: red;
+
+
+    .aboutPageImage {
+     display: none;
+    }
+
+
+    .aboutContent {
+      margin-bottom: 0px;
+      max-width: 40%;
+
+      p {
+        margin-top: 20px;
+      }
+    }
+
+    #aboutFeatures {
+      margin-top: 30px;
+      text-align: center;
+
+      .features {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+    }
+
+}
+
+.titleDiv {
+
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  .aboutTitle {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .iconImage {
+    height: 60px;
+    width: 100px;
+  }
+
+}
+
+
+.builtBy {
+  margin-top: 60px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.teamContainer {
+  margin-top: 35px;
+  display:flex;
+
+  justify-content:center;
+  // background-color: yellow;
+
+}
+
+
+.photosContainer {
+
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 300px;
+  margin-left: 20px;
+  flex-flow: wrap;
+  justify-content: center;
+  // background-color: red;
+
+  .teamMember {
+    padding: 15px;
+
+
+    figure {
+
+      img{
+        height: 180px;
+      }
+    }
+      .name {
+        text-align: center;
+        color:#484748;
+      }
+
+
+  }
+
+}
+
+
+}

@@ -8,9 +8,6 @@ const mongo = require('./lib/mongodb');
 
 const api = require('./routes/api');
 
-process.setMaxListeners(0);
-require('events').EventEmitter.prototype._maxListeners = 0;
-
 mongo.connect('mongodb://localhost:27017/muststash', () => {
   console.log('mongo connected');
 });

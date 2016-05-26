@@ -8,6 +8,7 @@ const React           = require('react'),
       browserHistory  = require('react-router').browserHistory,
       LandingPage     = require('./LandingPage/landing.js'),
       AboutPage       = require('./AboutPage/about.js'),
+      Team            = require('./AboutPage/team.js'),
       Header          = require('./LandingPage/header.js'),
       Nav             = require('./LandingPage/nav.js')
       ;

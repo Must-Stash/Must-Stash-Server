@@ -7,25 +7,35 @@ const List = React.createClass({
 
   render: function() {
     var array = this.props.list;
-    console.log(array, 'array');
 
-    var arrayItems = array.map(function(activity){
+    console.log(this.props.hasResults);
+
+    if(this.props.hasResults === true){
+      var arrayItems = array.map(function(activity){
+        return (
+          <div key={activity.id}>
+            <a href={activity.url}>
+              <p>{activity.title}</p>
+            </a>
+            <p>{activity.description}</p>
+          </div>
+        )
+      });
+
       return (
-        <div key={activity._id}>
-          <a href={activity._source.url}>
-            <p>{activity._source.title}</p>
-          </a>
-          <p>{activity._source.description}</p>
+        <div className="List">
+          {arrayItems}
         </div>
       )
-    });
+    }
 
-    return (
-      <div className="List">
-        <h1>test</h1>
-        {arrayItems}
-      </div>
-    )
+    else {
+      return (
+        <div className="emptylist"></div>
+      )
+    }
+
+
   }
 })
 

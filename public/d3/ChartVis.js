@@ -59,11 +59,11 @@ req.addEventListener("load", function(){
 
 
  var margin = 20,
-      diameter = 1100;
+      diameter = 800;
 
   var color = d3.scale.linear()
-      .domain([-1, 3])
-      .range(["#69D2E7", "#012D44"])
+      .domain([0, 6])
+      .range(["#CEEEFA", "#005283"])
       .interpolate(d3.interpolateHcl);
 
   var pack = d3.layout.pack()
@@ -85,7 +85,7 @@ req.addEventListener("load", function(){
       .data(nodes)
     .enter().append("circle")
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-      .style("fill", function(d) { return d.children ? color(d.depth) : "#FAFBE3"; })
+      .style("fill", function(d) { return d.children ? color(d.depth) : "#51A4BB"; })
       .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
 
 
@@ -94,7 +94,7 @@ req.addEventListener("load", function(){
       .data(nodes)
     .enter().append("text")
       .attr("class", "label")
-      .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
+      .style("fill", '#FFFFFF')
       .style("display", function(d) { return d.parent === root ? null : "none"; })
       .text(function(d) { return d.name; });
 
@@ -103,7 +103,7 @@ req.addEventListener("load", function(){
   var node = svg.selectAll("circle,text");
 
   d3.select(".container")
-      .style("background", color(-9))
+      .style("background", color(-6))
       .on("click", function() { zoom(root); });
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
@@ -120,7 +120,7 @@ req.addEventListener("load", function(){
 
     transition.selectAll("text")
       .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
-        .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
+      .style("fill", '#FFFFFF')
         .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
         .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
   }

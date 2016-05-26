@@ -7,7 +7,7 @@ const url = require('url');
 const cheerio = require('cheerio');
 const elastic = require('../lib/elasticsearch');
 
-queue.process('new_qa', 5, function(job, ctx, done){
+queue.process('new_qa', function(job, ctx, done){
   let activity = job.data.activity;
   let query = job.data.query;
 
