@@ -55,7 +55,6 @@ router.get('/search', (req, res, next) => {
     let urls = Object.keys(filteredUrls);
 
     mongo.groupUrlQueries(urls,(err, results) => {
-      console.log(results);
       if(err) {
         return res.status(500).json({success: false});
       }
@@ -71,12 +70,11 @@ router.get('/search', (req, res, next) => {
           let filteredScore = filteredUrls[url]._score;
 
           if(filteredUrl === result._id.url && filteredQuery === result._id.query) {
-            console.log("FILTERED URL", filteredUrl);
-            let totalScore = filteredScore + Math.min(5, getBaseLog(2, result.totalViews));
-            //console.log(filteredScore, totalScore);
+            let totalScore = filteredScore + Math.min(5, getBaseLog(3, result.totalViews));
             topMatches.push({
               id: filteredId,
               url: filteredUrl,
+              original_query: filteredQuery,
               title: filteredTitle,
               description: filteredDescription,
               totalScore: totalScore
@@ -89,6 +87,7 @@ router.get('/search', (req, res, next) => {
         return b.totalScore - a.totalScore;
       });
 
+      console.log(topMatches);
       return res.json({success: topMatches});
     });
   })
