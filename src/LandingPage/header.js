@@ -29,6 +29,7 @@ const Header = React.createClass({
               type="text"
               placeholder="Search Your History"
               ref="searchBar"
+              autoFocus
             />
           </form>
         </div>
@@ -45,6 +46,7 @@ const Header = React.createClass({
               type="text"
               placeholder="Search"
               ref="searchBar"
+              autoFocus
             />
           </form>
         </div>
