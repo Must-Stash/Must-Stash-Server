@@ -12,14 +12,14 @@ MustStash is a google [chrome extension](https://github.com/Must-Stash/Must-Stas
 ```sh
 $ git clone git@github.com:Must-Stash/Must-Stash-Server.git
 $ cd Must-Stash-Server
-$ npm install
+$ npm install
 $ webpack
 $ node workers/qa_worker
 $ npm start
 ```
 
 ## API
-POST /api/qa  
+**POST /api/qa**  
 - save a link and the query made to get to that link
 ```
 {
@@ -30,7 +30,7 @@ POST /api/qa
 - [webRequest Object](https://developer.chrome.com/extensions/webRequest#event-onCompleted) - Chrome API webRequest Object
 - [webNavigation Object](https://developer.chrome.com/extensions/webNavigation#event-onCommitted) - Chrome API webNavigation Object  
 
-GET /api/search?q=`<query>`  
+**GET /api/search?q=`<query>`**  
 - query the database for up to 20 of the top rated links.
 ```
 [
