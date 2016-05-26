@@ -15,9 +15,7 @@ const LandingPage = React.createClass({
         hasResults: false
       };
   },
-
   loadDataFromServer: function(query) {
-    console.log('query', query);
     $.ajax({
       url: "/api/search?q=" + encodeURIComponent(query),
       method: 'GET',
@@ -41,9 +39,22 @@ const LandingPage = React.createClass({
   },
 
   render: function() {
+
+    if(window.location.hash){
+      var hash = window.location.hash.substring(1);
+      var query = decodeURIComponent(hash);
+      this.setState({
+        query: query
+      })
+
+      this.loadDataFromServer(query);
+
+      window.location.hash = "";
+    }
+
     return (
       <div>
-        <Header hasResults={this.state.hasResults} loadDataFromServer={this.loadDataFromServer}/>
+        <Header hasResults={this.state.hasResults} loadDataFromServer={this.loadDataFromServer} />
         <List hasResults={this.state.hasResults} list={this.state.urlList} />
       </div>
     )
