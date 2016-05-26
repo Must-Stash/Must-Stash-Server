@@ -53,9 +53,9 @@
 	    IndexRoute = __webpack_require__(168).IndexRoute,
 	    browserHistory = __webpack_require__(168).browserHistory,
 	    LandingPage = __webpack_require__(229),
-	    AboutPage = __webpack_require__(241),
-	    Header = __webpack_require__(237),
-	    Nav = __webpack_require__(232);
+	    AboutPage = __webpack_require__(242),
+	    Header = __webpack_require__(239),
+	    Nav = __webpack_require__(236);
 	
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -25675,8 +25675,8 @@
 	var React = __webpack_require__(1),
 	    $ = __webpack_require__(230),
 	    List = __webpack_require__(231),
-	    Nav = __webpack_require__(232),
-	    Header = __webpack_require__(237);
+	    Nav = __webpack_require__(236),
+	    Header = __webpack_require__(239);
 	
 	var LandingPage = React.createClass({
 	  displayName: 'LandingPage',
@@ -35573,6 +35573,7 @@
 	'use strict';
 	
 	var React = __webpack_require__(1);
+	var styles = __webpack_require__(232);
 	
 	var List = React.createClass({
 	  displayName: 'List',
@@ -35585,10 +35586,10 @@
 	    var arrayItems = array.map(function (activity) {
 	      return React.createElement(
 	        'div',
-	        null,
+	        { key: activity._id },
 	        React.createElement(
 	          'a',
-	          { href: activity._source.url, key: activity._id },
+	          { href: activity._source.url },
 	          React.createElement(
 	            'p',
 	            null,
@@ -35606,6 +35607,11 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'List' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'test'
+	      ),
 	      arrayItems
 	    );
 	  }
@@ -35617,81 +35623,20 @@
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(168);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var styles = __webpack_require__(233);
-	
-	var Nav = _react2.default.createClass({
-	  displayName: 'Nav',
-	
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      { className: 'nav' },
-	      _react2.default.createElement(
-	        'ul',
-	        { className: 'navList' },
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.IndexLink,
-	            { to: '/', activeClassName: 'active' },
-	            'Home'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            'a',
-	            { href: '/d3.html' },
-	            'My History'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/about', activeClassName: 'active' },
-	            'About'
-	          )
-	        )
-	      ),
-	      this.props.children
-	    );
-	  }
-	});
-	
-	module.exports = Nav;
-
-/***/ },
-/* 233 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(234);
+	var content = __webpack_require__(233);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(236)(content, {});
+	var update = __webpack_require__(235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav_styles.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav_styles.scss");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./list_styles.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./list_styles.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -35701,21 +35646,21 @@
 	}
 
 /***/ },
-/* 234 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(235)();
+	exports = module.exports = __webpack_require__(234)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".nav {\n  margin-top: 20px;\n  height: 40px; }\n\n.navList {\n  list-style-type: none; }\n\nli {\n  display: inline;\n  padding-right: 15px; }\n", ""]);
+	exports.push([module.id, ".List {\n  background-color: yellow;\n  margin-left: 5%;\n  margin-right: 5%;\n  word-wrap: break-word; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 235 */
+/* 234 */
 /***/ function(module, exports) {
 
 	/*
@@ -35771,7 +35716,7 @@
 
 
 /***/ },
-/* 236 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -36023,14 +35968,114 @@
 
 
 /***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(168);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var styles = __webpack_require__(237);
+	
+	var Nav = _react2.default.createClass({
+	  displayName: 'Nav',
+	
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      { className: 'nav' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'navList' },
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.IndexLink,
+	            { to: '/', activeClassName: 'active' },
+	            'Home'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            'a',
+	            { href: '/d3.html' },
+	            'Visualization'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/about', activeClassName: 'active' },
+	            'About Us'
+	          )
+	        )
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = Nav;
+
+/***/ },
 /* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(238);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(235)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav_styles.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav_styles.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".nav {\n  background-image: url(\"/images/white_wall_hash.png\");\n  height: 100px;\n  padding-top: 30px;\n  align-items: center;\n  justify-content: center;\n  font-family: 'Montserrat', sans-serif; }\n\n.navList {\n  list-style-type: none;\n  text-align: center;\n  font-size: 14px; }\n\nli {\n  margin: 15px;\n  display: inline; }\n\na {\n  text-decoration: none; }\n\na:hover {\n  color: #99D0E4; }\n", ""]);
+	
+	// exports
+
+
+/***/ },
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
-	var styles = __webpack_require__(238);
-	var FontAwesome = __webpack_require__(240);
+	var styles = __webpack_require__(240);
 	
 	var Header = React.createClass({
 	  displayName: 'Header',
@@ -36067,16 +36112,16 @@
 	module.exports = Header;
 
 /***/ },
-/* 238 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(239);
+	var content = __webpack_require__(241);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(236)(content, {});
+	var update = __webpack_require__(235)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -36093,146 +36138,27 @@
 	}
 
 /***/ },
-/* 239 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(235)();
+	exports = module.exports = __webpack_require__(234)();
 	// imports
 	
 	
 	// module
-	exports.push([module.id, ".mainPageImage {\n  height: 300px;\n  width: 500px; }\n\n.imageBlock {\n  display: block; }\n\n.Header {\n  height: auto;\n  margin-top: 50px;\n  display: flex;\n  flex-flow: column;\n  justify-content: center;\n  align-items: center; }\n\n.search-form {\n  margin-top: 25px;\n  height: 24px;\n  width: 350px;\n  text-align: center;\n  font-size: 18px;\n  padding: 10px;\n  border: none;\n  border-bottom: 3px solid;\n  border-color: #99D0E4; }\n", ""]);
+	exports.push([module.id, ".mainPageImage {\n  height: 350px;\n  width: 550px; }\n\n.imageBlock {\n  display: block; }\n\n.Header {\n  background-image: url(\"/images/white_wall_hash.png\");\n  padding-top: 80px;\n  height: 100vh;\n  font-family: 'Montserrat', sans-serif;\n  display: flex;\n  flex-flow: column;\n  align-items: center; }\n\n.search-form {\n  margin-top: 35px;\n  height: 28px;\n  width: 500px;\n  text-align: center;\n  font-size: 18px;\n  padding: 10px;\n  border: none;\n  border-bottom: 4px solid;\n  border-color: #99D0E4;\n  -webkit-box-shadow: 0 10px 6px -6px #777;\n  -moz-box-shadow: 0 10px 6px -6px #777;\n  box-shadow: 0 10px 6px -6px #777; }\n\n*:focus {\n  outline: none; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 240 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-	
-	/**
-	 * A React component for the font-awesome icon library.
-	 *
-	 *
-	 * @param {Boolean} [border=false] Whether or not to show a border radius
-	 * @param {String} [className] An extra set of CSS classes to add to the component
-	 * @param {Boolean} [fixedWidth=false] Make buttons fixed width
-	 * @param {String} [flip=false] Flip the icon's orientation.
-	 * @param {Boolean} [inverse=false]Inverse the icon's color
-	 * @param {String} name Name of the icon to use
-	 * @param {Boolean} [pulse=false] Rotate icon with 8 steps (rather than smoothly)
-	 * @param {Number} [rotate] The degress to rotate the icon by
-	 * @param {String} [size] The icon scaling size
-	 * @param {Boolean} [spin=false] Spin the icon
-	 * @param {String} [stack] Stack an icon on top of another
-	 * @module FontAwesome
-	 * @type {ReactClass}
-	 */
-	exports.default = _react2.default.createClass({
-	
-	  displayName: 'FontAwesome',
-	
-	  propTypes: {
-	    border: _react2.default.PropTypes.bool,
-	    className: _react2.default.PropTypes.string,
-	    fixedWidth: _react2.default.PropTypes.bool,
-	    flip: _react2.default.PropTypes.oneOf(['horizontal', 'vertical']),
-	    inverse: _react2.default.PropTypes.bool,
-	    name: _react2.default.PropTypes.string.isRequired,
-	    pulse: _react2.default.PropTypes.bool,
-	    rotate: _react2.default.PropTypes.oneOf([90, 180, 270]),
-	    size: _react2.default.PropTypes.oneOf(['lg', '2x', '3x', '4x', '5x']),
-	    spin: _react2.default.PropTypes.bool,
-	    stack: _react2.default.PropTypes.oneOf(['1x', '2x'])
-	  },
-	
-	  render: function render() {
-	    var _props = this.props;
-	    var border = _props.border;
-	    var fixedWidth = _props.fixedWidth;
-	    var flip = _props.flip;
-	    var inverse = _props.inverse;
-	    var name = _props.name;
-	    var pulse = _props.pulse;
-	    var rotate = _props.rotate;
-	    var size = _props.size;
-	    var spin = _props.spin;
-	    var stack = _props.stack;
-	
-	    var props = _objectWithoutProperties(_props, ['border', 'fixedWidth', 'flip', 'inverse', 'name', 'pulse', 'rotate', 'size', 'spin', 'stack']);
-	
-	    var className = 'fa fa-' + name;
-	
-	    if (size) {
-	      className += ' fa-' + size;
-	    }
-	
-	    if (spin) {
-	      className += ' fa-spin';
-	    }
-	
-	    if (pulse) {
-	      className += ' fa-pulse';
-	    }
-	
-	    if (border) {
-	      className += ' fa-border';
-	    }
-	
-	    if (fixedWidth) {
-	      className += ' fa-fw';
-	    }
-	
-	    if (inverse) {
-	      className += ' fa-inverse';
-	    }
-	
-	    if (flip) {
-	      className += ' fa-flip-' + flip;
-	    }
-	
-	    if (rotate) {
-	      className += ' fa-rotate-' + rotate;
-	    }
-	
-	    if (stack) {
-	      className += ' fa-stack-' + stack;
-	    }
-	
-	    if (this.props.className) {
-	      className += ' ' + this.props.className;
-	    }
-	
-	    return _react2.default.createElement('span', _extends({}, props, {
-	      className: className
-	    }));
-	  }
-	});
-	module.exports = exports['default'];
-
-/***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var React = __webpack_require__(1);
+	var styles = __webpack_require__(243);
 	
 	var AboutPage = React.createClass({
 	  displayName: 'AboutPage',
@@ -36240,7 +36166,7 @@
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      { id: 'AboutPage' },
+	      { className: 'AboutPage' },
 	      React.createElement(
 	        'h1',
 	        null,
@@ -36256,6 +36182,46 @@
 	});
 	
 	module.exports = AboutPage;
+
+/***/ },
+/* 243 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(244);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(235)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./about_styles.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./about_styles.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(234)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, ".AboutPage {\n  background-color: yellow; }\n", ""]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);
