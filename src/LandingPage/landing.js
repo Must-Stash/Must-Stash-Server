@@ -18,7 +18,7 @@ const LandingPage = React.createClass({
   loadDataFromServer: function(query) {
     console.log('query', query);
     $.ajax({
-      url: "/api/betterSearch?q=" + encodeURIComponent(query),
+      url: "/api/search?q=" + encodeURIComponent(query),
       method: 'GET',
       cache: false,
       success: function(data) {
