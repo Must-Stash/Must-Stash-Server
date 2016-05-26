@@ -14,7 +14,10 @@ const AboutPage = React.createClass({
 
         <img className="aboutPageImage" src="/images/large-blue.svg" />
           <div className="aboutContent">
+            <div className="titleDiv">
+            <img className="iconImage" src="/images/large-blue.svg" />
             <h1 className="aboutTitle">About Must-Stash</h1>
+            </div>
 
             <div className="aboutText">
               <p>
@@ -28,6 +31,7 @@ const AboutPage = React.createClass({
             <div id="aboutFeatures">
 
                 <span className="features">Features : </span>
+            </div>
                 <br />
                 <p>
                    Reference your history quickly by fuzzy searching in the MustStash search bar and have the link most relevant to you returned instantly.
@@ -40,13 +44,14 @@ const AboutPage = React.createClass({
                 <p>
                   Have the option to determine the server you want your history to be saved to and keep it secure.
                 </p>
-            </div>
+
 
           </div>
 
 
       </div>
 
+        <h2 className="builtBy">Built By </h2>
         <Team />
 
     </div>
