@@ -16,6 +16,12 @@ req.addEventListener("load", function(){
       var query = element.query.query_string;
       var url = element.activity.url;
 
+      if(url.length > 45){
+        url = url.substring(0, 45) + "...";
+        console.log('url', url);
+        console.log('url', url.length);
+      }
+
       if(queries.indexOf(query) === -1){
         queries.push(query);
         root.children.push({
@@ -138,22 +144,3 @@ req.addEventListener("load", function(){
 });
 req.open("GET", "/api/qa");
 req.send();
-
-
-// .node:hover {
-//   stroke: #2AA6C0;
-//   stroke-width: 1px;
-//   stroke-dasharray: 5, 5;
-// }
-
-// .node--leaf {
-//   fill: white;
-// }
-
-// .label {
-//   font-size: 12px;
-//   font-weight: bold;
-//   font-family: 'Open Sans', sans-serif;
-//   text-shadow: 1px 1px #492436;
-//   text-anchor: middle;
-// }
