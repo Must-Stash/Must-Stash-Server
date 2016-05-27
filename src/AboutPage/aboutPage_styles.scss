@@ -11,7 +11,7 @@ $break-medium: 960px;
 @media screen and (min-width: $break-large) {
 
 .aboutUs{
-  margin-top: 70px;
+  margin-top: 100px;
   font-family: 'Montserrat', sans-serif;
   display:flex;
   justify-content: center;
@@ -19,13 +19,11 @@ $break-medium: 960px;
   color: #999999;
 
     .aboutPageImage {
-      margin-top: 120px;
       height: 360px;
       width: 600px;
     }
 
     .aboutContent {
-      margin-top: 135px;
       max-width: 41%;
 
       p {
@@ -90,8 +88,8 @@ $break-medium: 960px;
     text-align: center;
 
     .circle-pic {
-      height: 300px;
-      width: 300px;
+      height: 200px;
+      width: 200px;
       border-radius: 50%;
       overflow:hidden;
       background-size: cover;
@@ -138,7 +136,6 @@ $break-medium: 960px;
 
 
       .aboutPageImage {
-        margin-top: 120px;
         height: 210px;
         width: 350px;
       }
@@ -147,7 +144,6 @@ $break-medium: 960px;
       .aboutContent {
         margin-bottom: 0px;
         max-width: 40%;
-        margin-top: 100px;
 
         p {
           margin-top: 20px;
@@ -251,7 +247,7 @@ $break-medium: 960px;
 
 
 .aboutUs{
-  margin-top: 120px;
+  margin-top: 50px;
   font-family: 'Montserrat', sans-serif;
   display:flex;
   justify-content: center;
@@ -299,8 +295,9 @@ $break-medium: 960px;
     font-weight: bold;
   }
   .iconImage {
-    height: 60px;
-    width: 100px;
+    display: none;
+    // height: 60px;
+    // width: 100px;
   }
 
 }
