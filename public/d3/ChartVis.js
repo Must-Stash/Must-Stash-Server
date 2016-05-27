@@ -13,7 +13,7 @@ req.addEventListener("load", function(){
 
     if(element.query){
 
-      var query = element.query.query_string;
+      var query = decodeURIComponent(element.query.query_string);
       var url = element.activity.url;
 
       if(url.length > 45){
