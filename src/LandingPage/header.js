@@ -23,14 +23,15 @@ const Header = React.createClass({
           <div className="imageBlock">
             <img className="mainPageImage" src="/images/large-blue.svg" />
           </div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="big-search-form">
             <input
-              className="search-form"
+              className="big-search-input"
               type="text"
               placeholder="Search Your History"
               ref="searchBar"
               autoFocus
             />
+            <button className="big-search-button"></button>
           </form>
         </div>
       )
@@ -40,14 +41,15 @@ const Header = React.createClass({
       header = (
         <div className="searchingHeader">
           <img src="./images/horizonal-blue-elephant.svg" />
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="small-search-form">
             <input
-              className="search-form-small"
+              className="small-search-input"
               type="text"
               placeholder="Search"
               ref="searchBar"
               autoFocus
             />
+            <button className="small-search-button"></button>
           </form>
         </div>
       )
