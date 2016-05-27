@@ -9,7 +9,7 @@ body {
 
 .nav{
   background-image: url('/images/white_wall_hash.png');
-  height: 100px;
+  height: 134px;
   width: 100%;
   padding-top: 30px;
   align-items: center;
@@ -24,15 +24,23 @@ body {
 
 li {
   display: inline;
+  margin-right: 12px;
 }
 
 a{
-  margin-right: 30px;
+  margin-left: 14px;
   text-decoration: none;
 }
 
 a:hover{
   color: #99D0E4;
+}
+
+.navPic{
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
 }
 
 .title{
