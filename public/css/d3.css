@@ -59,8 +59,9 @@ a:hover{
 }
 
 .node:hover {
-  stroke: #000;
-  stroke-width: 1.5px;
+  stroke: #2AA6C0;
+  stroke-width: 1px;
+  stroke-dasharray: 5, 5;
 }
 
 .node--leaf {
@@ -69,10 +70,10 @@ a:hover{
 
 .label {
   font-size: 12px;
+  font-weight: bold;
   font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px #492436;
   text-anchor: middle;
-  color: #fff;
-  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
 }
 
 .label,
@@ -80,3 +81,5 @@ a:hover{
 .node--leaf {
   pointer-events: none;
 }
+
+
