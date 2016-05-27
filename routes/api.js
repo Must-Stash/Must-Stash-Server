@@ -51,7 +51,6 @@ router.get('/search', (req, res, next) => {
       list[url._source.url] = url;
       return list;
     }, {});
-
     let urls = Object.keys(filteredUrls);
 
     mongo.groupUrlQueries(urls,(err, results) => {
