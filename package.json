@@ -4,11 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/nodemon server.js",
-    "js:build": "./node_modules/.bin/webpack --progress --colors --watch",
-    "dev": "parallelshell 'npm run js:build' 'npm start'",
-    "webpack": "./node_modules/.bin/webpack --progress --colors --watch"
+    "server": "./node_modules/.bin/nodemon server.js",
+    "js:build": "./node_modules/.bin/webpack --progress --colors",
+    "worker": "./node_modules/.bin/nodemon ./workers/qa_worker.js",
+    "webpack": "./node_modules/.bin/webpack --progress --colors --watch",
+    "start": "npm run js:build && parallelshell 'npm run server' 'npm run worker'",
+    "dev": "parallelshell 'npm run webpack' 'npm run server' 'npm run worker'"
   },
   "repository": {
     "type": "git",
