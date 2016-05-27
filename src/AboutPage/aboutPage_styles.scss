@@ -1,6 +1,13 @@
 $break-large: 1200px;
 $break-medium: 960px;
 
+    .about-header-image {
+      display: flex;
+      margin-top: 30px;
+      align-items: center;
+      justify-content: center;
+    }
+
 @media screen and (min-width: $break-large) {
 
 .aboutUs{
@@ -9,20 +16,21 @@ $break-medium: 960px;
   display:flex;
   justify-content: center;
   width: 100%;
+  color: #999999;
 
     .aboutPageImage {
-      margin-top: 155px;
+      margin-top: 120px;
       height: 360px;
       width: 600px;
     }
 
     .aboutContent {
-      margin-top: 50px;
+      margin-top: 135px;
       max-width: 41%;
 
       p {
         word-spacing: 2px;
-        font-size: 17px;
+        font-size: 16px;
         margin-top: 20px;
       }
     }
@@ -44,6 +52,7 @@ $break-medium: 960px;
 .builtBy {
   margin-top: 100px;
   text-align: center;
+  color: #87BBC9;
 }
 
 
@@ -66,6 +75,7 @@ $break-medium: 960px;
   margin-top: 50px;
   display:flex;
   justify-content:center;
+  color: #87BBC9;
 }
 
 
@@ -77,18 +87,32 @@ $break-medium: 960px;
 
   .teamMember {
     padding: 25px;
+    text-align: center;
 
-    figure {
-      text-align: center;
-
-      img{
-        height: 195px;
-      }
-      .name {
-        color:#484748;
-      }
+    .circle-pic {
+      height: 300px;
+      width: 300px;
+      border-radius: 50%;
+      overflow:hidden;
+      background-size: cover;
+      background-position:center;
     }
 
+    .owen {
+      background-image: url("/images/owen.JPG");
+    }
+
+    .pam {
+      background-image: url("/images/pammy.JPG");
+    }
+
+    .nat {
+      background-image: url("/images/natty.JPG");
+    }
+
+    .taylor {
+      background-image: url("/images/taytay.JPG");
+    }
 
   }
 
@@ -110,6 +134,7 @@ $break-medium: 960px;
     justify-content: center;
     width: 100%;
     align-items: center;
+    color: #999999;
 
 
       .aboutPageImage {
@@ -122,6 +147,7 @@ $break-medium: 960px;
       .aboutContent {
         margin-bottom: 0px;
         max-width: 40%;
+        margin-top: 100px;
 
         p {
           margin-top: 20px;
@@ -161,12 +187,14 @@ $break-medium: 960px;
   .builtBy {
   margin-top: 50px;
   text-align: center;
+  color: #87BBC9;
   }
 
   .teamContainer {
     margin-top: 40px;
     display:flex;
     justify-content:center;
+    color: #87BBC9;
   }
 
 
@@ -180,17 +208,32 @@ $break-medium: 960px;
 
     .teamMember {
       padding: 30px;
+      text-align: center;
 
-      figure {
-
-        img{
-          height: 200px;
-        }
+      .circle-pic {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        overflow:hidden;
+        background-size: cover;
+        background-position:center;
       }
-        .name {
-          text-align: center;
-          color:#484748;
-        }
+
+      .owen {
+        background-image: url("/images/owen.JPG");
+      }
+
+      .pam {
+        background-image: url("/images/pammy.JPG");
+      }
+
+      .nat {
+        background-image: url("/images/natty.JPG");
+      }
+
+      .taylor {
+        background-image: url("/images/taytay.JPG");
+      }
 
 
     }
@@ -214,6 +257,7 @@ $break-medium: 960px;
   justify-content: center;
   width: 100%;
   align-items: center;
+  color: #999999;
   // background-color: red;
 
 
@@ -266,6 +310,7 @@ $break-medium: 960px;
   margin-top: 60px;
   font-size: 20px;
   text-align: center;
+  color: #87BBC9;
 }
 
 .teamContainer {
@@ -273,6 +318,7 @@ $break-medium: 960px;
   display:flex;
 
   justify-content:center;
+  color: #87BBC9;
   // background-color: yellow;
 
 }
@@ -290,17 +336,32 @@ $break-medium: 960px;
 
   .teamMember {
     padding: 15px;
+    text-align: center;
 
 
-    figure {
-
-      img{
-        height: 180px;
+      .circle-pic {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        overflow:hidden;
+        background-size: cover;
+        background-position:center;
       }
-    }
-      .name {
-        text-align: center;
-        color:#484748;
+
+      .owen {
+        background-image: url("/images/owen.JPG");
+      }
+
+      .pam {
+        background-image: url("/images/pammy.JPG");
+      }
+
+      .nat {
+        background-image: url("/images/natty.JPG");
+      }
+
+      .taylor {
+        background-image: url("/images/taytay.JPG");
       }
 
 
