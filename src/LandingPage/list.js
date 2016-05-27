@@ -14,10 +14,10 @@ const List = React.createClass({
       var arrayItems = array.map(function(activity){
         return (
           <div key={activity.id}>
-            <a href={activity.url}>
-              <p>{activity.title}</p>
+            <a className="activity-title" href={activity.url}>
+              {activity.title}
             </a>
-            <p>{activity.description}</p>
+            <p className="activity-description">{activity.description}</p>
           </div>
         )
       });
