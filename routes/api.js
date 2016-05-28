@@ -68,6 +68,10 @@ router.get('/search', (req, res, next) => {
           let filteredDescription = filteredUrls[url]._source.description;
           let filteredScore = filteredUrls[url]._score;
 
+          if(filteredDescription.length > 200){
+            filteredDescription = filteredDescription.substring(0,200) + "...";
+          }
+
           if(filteredUrl === result._id.url && filteredQuery === result._id.query) {
             let totalScore = filteredScore + Math.min(5, getBaseLog(3, result.totalViews));
             topMatches.push({
